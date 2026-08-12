@@ -512,8 +512,8 @@ const COMPANIES = {
 /* ================= I18N ================= */
 const T = {
   opener:{
-    en:(n,co)=>`"Hi <b>${n}</b>, this is Tomás, from <b>Revolut Business</b> here in Lisbon. I know you weren't expecting this call, so I'll be direct: I looked into <b>${co}</b> before calling, and I think you're the right person. Can I take <b>30 seconds</b> to explain why, and then you tell me if it makes sense?"`,
-    pt:(n,co)=>`«Olá <b>${n}</b>, fala o Tomás, da <b>Revolut Business</b>, aqui em Lisboa. Sei que não estava à espera desta chamada, por isso vou ser direto: estive a ver <b>${co}</b> antes de ligar e acho que é a pessoa certa. Dá-me <b>30 segundos</b> para explicar porquê, e depois diz-me se faz sentido?»`
+    en:(n,co,l1,l2)=>`"Hi <b>${n}</b>, this is Tomás, from <b>Revolut Business</b>. We work with brands like <b>${l1}</b> and <b>${l2}</b>. I know you weren't expecting this call, so I'll be direct: I looked into <b>${co}</b> before calling, and I think you're the right person. Can I take <b>30 seconds</b>, and then you tell me if it makes sense?"`,
+    pt:(n,co,l1,l2)=>`«Olá <b>${n}</b>, fala o Tomás, da <b>Revolut Business</b>. Trabalhamos com marcas como a <b>${l1}</b> e a <b>${l2}</b>. Sei que não estava à espera desta chamada, por isso vou ser direto: estive a ver <b>${co}</b> antes de ligar e acho que é a pessoa certa. Dá-me <b>30 segundos</b>, e depois diz-me se faz sentido?»`
   },
   pitchGeneric:{
     en:()=>`"Thanks. The reason I called: <b>[observable fact about them]</b>. When a company does that, <b>[mechanism: why the pain follows]</b>. That usually costs <b>[one named cost]</b>. <b>[Question pointing back at them]</b>?"`,
@@ -609,11 +609,23 @@ function bestCaseFor(laneId){
 }
 
 /* ================= RENDER ================= */
+const LOGOS = {
+  wholesale:["PERGOLUX","The Workplace Depot"],
+  ecommerce:["Tropicfeel","Paloma Wool"],
+  saas:["Deel","PFM Intelligence"],
+  travel:["BizAway","WeRoad"],
+  services:["PFM Intelligence","Deel"],
+  logistics:["Lyca Mobile","The Workplace Depot"],
+  manufacturing:["PERGOLUX","Tropicfeel"],
+  food:["Tropicfeel","The Workplace Depot"]
+};
 function renderOpener(){
   let name = lang==="en" ? "[Name]" : "[Nome]";
   let co = lang==="en" ? "your company" : "a vossa empresa";
   if(sel.type==="company"){name=COMPANIES[sel.id].contact;co=COMPANIES[sel.id].cname[lang];}
-  document.getElementById("openerBox").innerHTML=T.opener[lang](name,co);
+  const ind=currentIndustryId();
+  const lg=LOGOS[ind]||["Tropicfeel","Deel"];
+  document.getElementById("openerBox").innerHTML=T.opener[lang](name,co,lg[0],lg[1]);
   const chip=document.getElementById("roleChip");
   if(sel.type==="company"){chip.style.display="inline-block";chip.textContent=COMPANIES[sel.id].role+" · "+COMPANIES[sel.id].angle;}
   else chip.style.display="none";
