@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Revolut Live — Leads & Role-Play</title>
+<style>
+  :root{
+    --ink:#171820; --muted:#666a78; --paper:#f4f5f9; --card:#fff; --line:#dfe2eb;
+    --purple:#6547d4; --purple-soft:#eeeaff; --green:#087d69; --green-soft:#e5f6f1;
+    --amber:#9a6b00; --amber-soft:#fdf3d8; --red:#b3261e; --red-soft:#fdecea;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(circle at 92% 0%,rgba(101,71,212,.12),transparent 30rem),var(--paper);
+    color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45;font-size:15px}
+  .shell{width:min(1600px,calc(100% - 24px));margin:0 auto;padding:18px 0 80px}
+  header{padding:18px 24px;border-radius:18px;background:#101116;color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  header h1{margin:0;font-size:1.35rem;letter-spacing:-.02em}
+  header .sub{color:#c7bcff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .maintabs{display:flex;gap:8px;margin:14px 0}
+  .maintabs button{flex:1;padding:13px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;
+    font:inherit;font-weight:800;font-size:1rem;cursor:pointer;color:var(--muted)}
+  .maintabs button.active{background:#101116;color:#fff;border-color:#101116}
+  .subtabs{display:flex;gap:6px;margin:10px 0 14px;flex-wrap:wrap}
+  .subtabs button{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font:inherit;
+    font-weight:700;font-size:.85rem;cursor:pointer;color:var(--muted)}
+  .subtabs button.active{background:var(--purple);border-color:var(--purple);color:#fff}
+  .panel{display:none}.panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:14px;box-shadow:0 6px 20px rgba(31,34,48,.05)}
+  h2{margin:0 0 10px;font-size:1.15rem;letter-spacing:-.02em}
+  h3{margin:14px 0 6px;font-size:.95rem}
+  p{margin:6px 0}
+  .muted{color:var(--muted)} .small{font-size:.83rem}
+  .tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-right:6px}
+  .tag.p{color:var(--purple);background:var(--purple-soft)} .tag.g{color:var(--green);background:var(--green-soft)}
+  .tag.a{color:var(--amber);background:var(--amber-soft)} .tag.r{color:var(--red);background:var(--red-soft)}
+  ul{margin:6px 0;padding-left:1.2rem} li{margin:3px 0}
+  .lead{border-left:4px solid var(--purple);padding-left:14px;margin:12px 0}
+  .lead h3{margin:2px 0}
+  code{background:#eef0f6;border-radius:6px;padding:1px 6px;font-size:.85em}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+  /* selector bar */
+  .selbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fff;border:2px solid var(--purple);
+    border-radius:16px;padding:12px 16px;margin-bottom:14px;position:sticky;top:6px;z-index:50;box-shadow:0 8px 24px rgba(31,34,48,.10)}
+  .selbar label{font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .selbar select{font:inherit;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;min-width:210px;font-weight:600}
+  .selbar button{font:inherit;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#f4f5f9;cursor:pointer}
+  .selbar .status{font-size:.82rem;color:var(--green);font-weight:700;margin-left:auto}
+  /* call spine */
+  .spine{display:flex;gap:4px;flex-wrap:wrap;margin:2px 0 14px}
+  .spine span{background:#101116;color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.04em;padding:5px 9px;border-radius:8px}
+  .spine span:nth-child(even){background:var(--purple)}
+  /* script blocks */
+  .script{background:var(--purple-soft);border-radius:12px;padding:12px 16px;font-size:1rem;margin:8px 0}
+  .script.g{background:var(--green-soft)}
+  .script .pt{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(0,0,0,.15);color:#3c3f52;font-size:.92rem}
+  .steplabel{font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:16px 0 4px}
+  /* master table */
+  .twrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
+  table{border-collapse:collapse;width:100%;min-width:1750px;font-size:.82rem}
+  th{position:sticky;top:0;background:#101116;color:#fff;text-align:left;padding:9px 10px;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;z-index:5}
+  td{border-top:1px solid var(--line);padding:10px;vertical-align:top}
+  td:first-child{font-weight:800;cursor:pointer;min-width:150px;background:#fafafd}
+  tr.sel td:first-child{background:var(--purple);color:#fff}
+  tr.top td{background:#fbfaff}
+  tr.sel td{background:var(--purple-soft)}
+  td .say{display:block;margin-top:4px;font-style:italic;color:#333}
+  details{margin:4px 0}
+  details summary{cursor:pointer;font-weight:800;font-size:.78rem;color:var(--purple)}
+  details p{font-size:.8rem}
+  .hint{font-size:.78rem;color:var(--muted);margin:6px 2px}
+  .valuebox{border:2px solid var(--green);border-radius:14px;padding:14px 18px;background:var(--green-soft)}
+  .valuebox h3{margin-top:0}
+  .kpi{font-weight:800;color:var(--green)}
+  footer{margin-top:26px;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<main class="shell">
+<header>
+  <div>
+    <div class="sub">Revolut Sales Skills · Thu 13 Aug 09:00 · Ricky · EN/PT only</div>
+    <h1>Live Exercise Hub — Leads Search & Role-Play</h1>
+  </div>
+</header>
+
+<div class="maintabs">
+  <button id="mt1" class="active" onclick="mainTab(1)">🔎 Leads Search Exercise</button>
+  <button id="mt2" onclick="mainTab(2)">📞 Role-Play Exercise</button>
+</div>
+
+<!-- ============ TAB 1: LEADS SEARCH ============ -->
+<section id="tab1" class="panel active">
+  <div class="subtabs">
+    <button id="st1" class="active" onclick="subTab(1)">Default leads (if explicitly allowed)</button>
+    <button id="st2" onclick="subTab(2)">Any non-AI tool allowed</button>
+    <button id="st3" onclick="subTab(3)">Google + LinkedIn only</button>
+  </div>
+
+  <!-- inner 1: default leads -->
+  <div id="sub1" class="panel active">
+    <div class="card">
+      <span class="tag a">Use only if Ricky explicitly allows prepared material — present honestly: “I have companies I researched in preparation — want me to use those or source live?”</span>
+      <h2>The 5-lead bank (2 wholesale · 2 ecommerce · 1 SaaS)</h2>
+
+      <div class="lead">
+        <h3>1 · Piranha Global Lda — Viseu · Wholesale Import & Export</h3>
+        <p class="small"><b>Fit:</b> 33 employees, ~€2.5M revenue (ECO 2023), exports to 40+ countries, ~5,000 wholesale clients. LinkedIn: 11–50, industry Wholesale Import & Export.</p>
+        <p class="small"><b>Buyer:</b> Pedro Miguel Dias — Founder/Chairman (linkedin.com/in/pedro-miguel-dias). Brother Fernando Dias = Operations Director.</p>
+        <p class="small"><b>Insights:</b> ① 2025 migration to Shopify Plus with Sage X3 ERP sync (agency: Skrey) — payment-stack decisions in motion. ② €2M invested in 1,000 m² logistics centre; own brands ≈50% of catalog.</p>
+        <p class="small"><b>Entry lanes:</b> FX + international collections · payment acceptance for the new store. <b>Validate:</b> which PSP sits behind the new checkouts; how non-EUR invoices are collected.</p>
+      </div>
+
+      <div class="lead">
+        <h3>2 · BATHIGAL Import & Export — Águeda · Wholesale Import & Export</h3>
+        <p class="small"><b>Fit:</b> LinkedIn 11–50, founded 2022. Exports Portuguese/Spanish construction materials to 20+ African countries (Angola, DRC, Senegal, Nigeria, Mozambique…).</p>
+        <p class="small"><b>Buyer:</b> Founder / Sócio-Gerente (verify name on LinkedIn live).</p>
+        <p class="small"><b>Insights:</b> ① Covers full logistics chain in-house — export docs, sea + road transport; payment ops scale with every new corridor. ② Two-sided flows: EUR supplier payments in Iberia + USD/EUR collections from Africa.</p>
+        <p class="small"><b>Entry lanes:</b> FX/multi-currency (EUR/USD) · faster inbound/outbound international transfers. <b>Validate:</b> registry revenue; currencies African customers pay in.</p>
+      </div>
+
+      <div class="lead">
+        <h3>3 · ISTO. — Lisbon · Retail Apparel & Fashion</h3>
+        <p class="small"><b>Fit:</b> LinkedIn 11–50, Lisboa, founded 2017. Ships worldwide with thresholds in GBP/USD/CAD/SGD.</p>
+        <p class="small"><b>Buyer:</b> André Flórido — CFO since July 2025 (linkedin.com/in/andreflorido). Alt: co-founder Pedro Palha.</p>
+        <p class="small"><b>Insights:</b> ① July 2025 Altaz Capital partnership → London store in 8–12 months, NY + Madrid in 2–3 years (FashionUnited). ② Berlin store opened 2024; 4 Lisbon stores; full price-transparency brand.</p>
+        <p class="small"><b>Entry lanes:</b> GBP account/FX for the London entity · multi-currency DTC settlement · cards/expenses for new retail teams. <b>Validate:</b> banking setup planned for London; who owns treasury post-Altaz.</p>
+      </div>
+
+      <div class="lead">
+        <h3>4 · Hey Harper — Lisbon · Retail</h3>
+        <p class="small"><b>Fit:</b> LinkedIn 11–50, HQ Lisbon, DTC waterproof-jewelry brand founded 2018.</p>
+        <p class="small"><b>Buyer:</b> Founder/CEO (verify name on LinkedIn live).</p>
+        <p class="small"><b>Insights:</b> ① Sold to 100+ countries within two years of founding — global DTC from day one. ② English-first global Shopify store; international shipping matrix.</p>
+        <p class="small"><b>Entry lanes:</b> payment acceptance / Revolut Pay · multi-currency settlement + FX. <b>Validate:</b> current acquirer + blended fee; share of non-EUR revenue.</p>
+      </div>
+
+      <div class="lead">
+        <h3>5 · Didimo — Porto (Leça da Palmeira) · Tech / SaaS</h3>
+        <p class="small"><b>Fit:</b> LinkedIn 11–50; generative-AI 3D character platform (Popul8) for game studios.</p>
+        <p class="small"><b>Buyer:</b> CEO/founder or finance lead (verify current name on LinkedIn live).</p>
+        <p class="small"><b>Insights:</b> ① Offices in Vancouver, London and Delaware — payroll/spend in 3+ currencies. ② Clients include Sony, Microsoft, Universal, Amazon — USD/GBP receivables.</p>
+        <p class="small"><b>Entry lanes:</b> multi-currency accounts + FX · corporate cards/expenses for distributed team · international payroll/contractor payouts. <b>Validate:</b> where USD revenue lands today; how UK/CA staff costs are paid.</p>
+      </div>
+
+      <h3>Rejects — say these out loud in Q&A (evidence discipline)</h3>
+      <ul class="small">
+        <li><b>PIN Exportação</b> — looked right, but LinkedIn band is actually 51–200 → outside SMB proxy.</li>
+        <li><b>Coffee Ithaka</b> — Lisbon office but HQ is Zug, Switzerland → fails Portugal registration.</li>
+        <li><b>Imporcash</b> — good importer profile but no LinkedIn company page → can't be surfaced or verified in-flow.</li>
+        <li><b>Josefinas / 8000Kicks</b> — perfect DTC fit but 2–10 employees → too micro, no finance buyer.</li>
+        <li><b>Mercadão</b> — matched filters but ceased operations June 2025.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- inner 2: any non-AI tool -->
+  <div id="sub2" class="panel">
+    <div class="card">
+      <h2>If Ricky allows any non-AI tool</h2>
+      <p><b>First, ask the clean question</b> (before starting the timer):</p>
+      <div class="script">“Just before I begin, to make sure I follow the rules correctly: should I use only Google and LinkedIn, or are other non-AI prospecting databases such as Apollo also permitted?”</div>
+      <p>Then <b>follow his answer literally</b>.</p>
+      <h3>Best tool: Apollo — manual database search ONLY</h3>
+      <ul>
+        <li><b>Companies search:</b> Location = Portugal → Employees = 11–50 → Industry = target lane → sort by relevance.</li>
+        <li><b>Per company:</b> open → People tab → filter titles (CFO, Finance Director, COO, Founder/CEO) → grab name + LinkedIn URL.</li>
+        <li><b>Never touch</b> Apollo's AI assistant, natural-language search, AI summaries or scoring — that violates the no-AI rule even if Apollo is allowed.</li>
+        <li>Realistic gain: 5-lead sourcing drops from ~7 min to <b>3–5 min</b> → more time for insights on the best 2.</li>
+      </ul>
+      <h3>Flow</h3>
+      <p><code>Apollo Companies → pick company → People → buyer → contact info → sheet</code> — then Google only for the 2 insight leads.</p>
+      <h3>Fallbacks if Apollo feels risky on the day</h3>
+      <ul>
+        <li><b>Sales Navigator</b> (only your OWN access): Account search = HQ Portugal + headcount 11–50/51–200 + industry (+ revenue filter if shown). Lead search = current company + Function Finance/Ops + Seniority CXO/Owner/Director.</li>
+        <li><b>Racius / eInforma / Iberinform</b> (company registries — not AI): confirm revenue bracket "Volume de negócios" fast when challenged on the €15M ceiling.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- inner 3: google + linkedin only -->
+  <div id="sub3" class="panel">
+    <div class="card">
+      <h2>Google + LinkedIn only — the 15-minute machine</h2>
+      <h3>Timeline</h3>
+      <ul>
+        <li><b>00:00–01:00</b> Restate out loud: Portugal · SMB ≤15M revenue · 5 leads · sources allowed · selection logic (eligibility → trigger → pain hypothesis → buyer → evidence).</li>
+        <li><b>01:00–03:00</b> Pick lanes — plan a <b>2–2–1 industry mix</b> (e.g. 2 wholesale + 2 ecommerce + 1 SaaS).</li>
+        <li><b>03:00–11:00</b> Find ~7, keep 5 (~60–90s per lead).</li>
+        <li><b>11:00–14:00</b> Rank (score 0–2: eligibility · fit · trigger · buyer access · evidence) + insights on best 2.</li>
+        <li><b>14:00–15:00</b> Prepare the defence of the top lead.</li>
+      </ul>
+      <h3>People-first LinkedIn flow (fastest, ~60s/lead)</h3>
+      <p><code>Search “CEO Portugal [industry]” → person → their company page → size 11–50? → quick Google revenue sanity check → back to person → copy URL → sheet row</code></p>
+      <p class="small muted">Company-first alternative: Companies tab → Locations = Portugal → Size = 11–50 → Industry filter → open company → People.</p>
+      <h3>�gotchas: LinkedIn industry labels</h3>
+      <ul class="small">
+        <li>Wholesale lane: industry = <b>“Wholesale Import and Export”</b> — works as-is (Piranha, Bathigal, ASP, Comeca live here).</li>
+        <li>Ecommerce lane: most Portuguese DTC brands are under <b>“Retail Apparel and Fashion”</b>, not “Retail” — select Retail + Retail Apparel and Fashion + Technology, Information and Internet together.</li>
+        <li>SaaS lane: only a minority label themselves “Software Development” — if thin, add IT Services, Technology Information & Internet, Computer & Network Security.</li>
+      </ul>
+      <h3>Query bank (rotate, don't redesign mid-test)</h3>
+      <ul class="small">
+        <li><code>Founder CEO Portugal import export</code> · <code>CEO Portugal ecommerce</code> · <code>Founder Portugal hospitality</code> · <code>CEO Portugal SaaS</code> · <code>Finance Director Portugal wholesale</code></li>
+        <li>Google revenue check: <code>[company] racius</code> or <code>[company] volume de negócios</code></li>
+        <li>Insights (best 2 only): <code>[company] expansão OR crescimento OR abre OR investimento</code> · company LinkedIn posts · site “ships to”/currency selector.</li>
+      </ul>
+      <h3>Buyer hierarchy</h3>
+      <p>CFO / Finance Director → COO → Founder/CEO (for 11–50, usually the founder — skip the ceremonial CFO hunt).</p>
+      <h3>Defence lines (memorise)</h3>
+      <div class="script g">“The source confirms X. I infer Y. I would validate Z.”</div>
+      <div class="script g">“LinkedIn indicates an SMB-sized workforce; I'd validate revenue before fully qualifying the account.”</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 2: ROLE-PLAY ============ -->
+<section id="tab2" class="panel">
+
+  <div class="selbar">
+    <label>Company</label>
+    <select id="selCompany" onchange="pickCompany(this.value)">
+      <option value="">— none —</option>
+    </select>
+    <label>Industry</label>
+    <select id="selIndustry" onchange="pickIndustry(this.value)">
+      <option value="">— none —</option>
+      <optgroup label="Main lanes" id="ogMain"></optgroup>
+      <optgroup label="Other industries" id="ogOther"></optgroup>
+    </select>
+    <button onclick="clearSel()">✕ Clear selection</button>
+    <span class="status" id="selStatus">Generic mode — full table</span>
+  </div>
+
+  <div class="spine">
+    <span>OPENER</span><span>→ PITCH</span><span>→ PROCESS</span><span>→ PAIN</span><span>→ NUMBERS</span>
+    <span>→ WHY NOW</span><span>→ SETUP</span><span>→ WHO</span><span>→ RECAP</span><span>→ VALUE</span><span>→ APPOINTMENT</span>
+  </div>
+
+  <div class="card">
+    <div class="steplabel">1 · Opener (fixed)</div>
+    <div class="script" id="openerBox"></div>
+
+    <div class="steplabel">2 · 30-second pitch (changes with selection)</div>
+    <div class="script" id="pitchBox"></div>
+    <p class="hint" id="pitchHint"></p>
+  </div>
+
+  <div class="card">
+    <div class="steplabel">3 · Discovery cheat table — click a lane name to feed the Value block (max 2)</div>
+    <p class="hint" id="tableHint">No selection: full table in default order. Select an industry/company above to re-rank rows by priority.</p>
+    <div class="twrap">
+      <table id="masterTable">
+        <thead><tr>
+          <th>Lane</th><th>👀 If you hear / see…</th><th>❓ Ask</th><th>📊 Quantify</th>
+          <th>💡 Revolut line</th><th>🧾 Best real proof</th><th>💰 Budget objection</th>
+          <th>⚔️ Competitor objection</th><th>🚫 No-need objection</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="hint"><b>Competitor reflex:</b> “X is strong at [real strength]. Revolut additionally gives you [specific thing X does not]. Is that adjacent workflow actually relevant to you?” — never jump from “we use Wise” to a product catalogue; first discover whether the problem even exists. Where Airwallex/Payhawk genuinely match features, use the narrow defensible difference: <b>bank vs EMI · Revolut Pay + consumer network · product structure</b> — then go back to discovery.</p>
+  </div>
+
+  <div class="card">
+    <div class="steplabel">4 · Recap (fixed)</div>
+    <div class="script g">“So today you're doing <b>[X]</b>, the main issue is <b>[Y]</b>, and it's costing/creating <b>[Z]</b>. Is that fair?”
+      <span class="pt">«Então hoje fazem [X], o principal problema é [Y], e isso está a custar-vos [Z]. É justo dizer isto?»</span>
+    </div>
+
+    <div class="steplabel">5 · Value (auto-built from your clicks / selection)</div>
+    <div class="valuebox" id="valueBox"></div>
+
+    <div class="steplabel">6 · Appointment close (fixed)</div>
+    <div class="script">“The sensible next step is a <b>20–25 minute demo</b> focused on [the 1–2 areas we discussed]. Who else owns this process and should join? Would <b>Tuesday morning or Wednesday afternoon</b> work better? I'll send a follow-up email with the details and agenda.”
+      <span class="pt">«O próximo passo que faz sentido é uma demo de 20–25 minutos focada em [áreas]. Há mais alguém que deva estar? Prefere terça de manhã ou quarta à tarde? Envio já um email com os detalhes e a agenda.»</span>
+    </div>
+  </div>
+
+  <footer>Evidence rule: cite the fact · label the inference · validate the pain · never invent the number. If rambling: “Let me give you the short version.”</footer>
+</section>
+
+<script>
+/* ================= DATA ================= */
+const LANES = {
+  fx: {
+    name:"FX + INTERNATIONAL PAYMENTS",
+    hear:"Imports/exports · foreign suppliers · USD/GBP · multiple markets/currencies",
+    ask:"“How are you handling that today?” → “Where does conversion happen?”",
+    quant:"€ FX/month · currencies · effective spread/fees · transfers/month · delays",
+    line:"“Bring currencies, FX and international payments into one setup, potentially reducing cost and operational friction.”",
+    proof:"FX: Workplace Depot ~£30k FX savings in 6 months (~£5k/month). Transfers: PERGOLUX €25k+ saved in transfer fees in 6 months; processing ~5 days → seconds in its workflow.",
+    budget:{q:"“It's expensive.”",say:"“Completely fair. I wouldn't compare the subscription in isolation. I'd compare it with what FX, transfers and the surrounding workflow cost you today. Roughly what is that in a normal month?”"},
+    comp:[
+      {n:"WISE",t:"Genuinely strong on multi-currency accounts, FX, transfers, cards, expenses and batch payments. But Wise Europe explicitly says it is not a bank; Revolut Business is an EEA bank. Revolut also has Revolut Pay, integrated BillPay/purchase orders and a broader merchant-acceptance stack.",s:"“Wise is very strong for international money. Is Wise solving mainly FX and transfers for you, or are supplier bills, payment acceptance and the rest of your finance workflow also sitting there?”"},
+      {n:"AIRWALLEX",t:"Much closer competitor — accounts, FX, global payments, cards, expenses, Bill Pay, acquiring and APIs. Don't claim feature gaps. Real differences: Airwallex's EEA entity is an EMI, not a bank; Revolut is an EEA bank, has Revolut Pay + consumer network. Airwallex Yield (EEA) = money-market fund investment, not a savings account.",s:"“Airwallex is one of the closest alternatives. Rather than pretend there's a huge feature gap, I'd look at whether the Revolut banking ecosystem, Revolut Pay, or the wider workflow creates incremental value. What are you using Airwallex for today?”"}
+    ],
+    noneed:{q:"“Our bank already works.”",say:"“It may genuinely work very well. Where, if anywhere, would you improve the current FX or international-payment process?”"},
+    caps:"Multi-currency accounts + exchange at interbank rate (within plan allowance) + transfers in 35+ currencies to 150+ destinations, SEPA Instant, scheduled/bulk payments.",
+    kpi:"Workplace Depot: ~£30k FX saved in 6 months · PERGOLUX: €25k+ transfer fees saved, days → seconds."
+  },
+  cards: {
+    name:"CARDS + EXPENSES",
+    hear:"Travel · growing teams · subscriptions · shared/personal cards · reimbursements · receipt chasing",
+    ask:"“How does an employee purchase work today?” → “What happens afterwards?”",
+    quant:"users · purchases/month · reimbursement time · receipt chasing · finance hours",
+    line:"“Give employees controlled spending autonomy while automating approvals, receipts and reconciliation.”",
+    proof:"Rakuten France: 25%+ less time on expense reporting, halved payment-processing time (Expenses + cards + API). BizAway: thousands of global virtual-card transactions worth millions €/month from one central account.",
+    budget:{q:"“Why pay for expense software?”",say:"“Fair. The question is whether the current process costs more than the tool. How much finance time goes into approvals, missing receipts, reimbursements and reconciliation every month?”"},
+    comp:[
+      {n:"PLEO",t:"Genuinely strong at company cards, expense management and AP, including direct invoice payments. Revolut additionally offers payment acceptance/Revolut Pay, FX-risk tools (Forwards) and the wider EEA business-bank environment — not part of Pleo's core spend stack.",s:"“Pleo is strong at spend management. Is spend actually the whole problem, or are your banking, FX, supplier payments or customer-payment workflows still elsewhere?”"},
+      {n:"SPENDESK",t:"Cards, expenses, AP, procurement and international supplier transfers via a Wise partnership. It is an EEA payment institution, not a bank; no Revolut-Pay-style customer network or merchant-acceptance suite.",s:"“Spendesk already solves a lot around spend. What happens outside it — the underlying bank account, incoming customer payments and FX?”"},
+      {n:"PAYHAWK",t:"Very strong: global payments via J.P. Morgan, AP, cards, expenses, procurement, ERP sync. The clear adjacent Revolut differentiator is customer payment acceptance + Revolut Pay + the two-sided banking environment.",s:"“Payhawk is extremely strong on outgoing spend. Do you also have friction on the other side — where customers pay you, or where cash and currencies are managed?”"}
+    ],
+    noneed:{q:"“We already have corporate cards.”",say:"“Great. The card itself may be completely solved. How are approvals, policy controls, receipts and reconciliation handled around those cards?”"},
+    caps:"Physical + virtual debit cards with limits by category/period/merchant, approval flows, receipt capture & matching, real-time spend tracking, accounting/HR integrations (€8/user/month expense tool).",
+    kpi:"Rakuten France: 25%+ less expense-reporting time · BizAway: scaled 28→160 staff on central virtual-card control."
+  },
+  bills: {
+    name:"BILLS + AP + RECONCILIATION",
+    hear:"Lots of suppliers · PDF invoices · approval chasing · ERP · CSVs · manual close",
+    ask:"“Walk me through a bill from receipt to fully reconciled.” → “Where is it still manual?”",
+    quant:"invoices/month · touches · approvers · hours · errors · close time",
+    line:"“Connect invoice capture, approvals, payment and reconciliation rather than stitching each step together manually.”",
+    proof:"BillPay: Join Odin saves ≥3 hours/week on coding bills, approvals and payments. Reconciliation: Sunway synchronised 100% of transactions, saving countless hours reconciling €10m+ of flight transactions via the Business API.",
+    budget:{q:"“We don't want another finance tool.”",say:"“Neither would I if it only adds another screen. I'd first quantify whether it actually removes work. How many people and hours currently touch this process?”"},
+    comp:[
+      {n:"PLEO",t:"Pleo does invoice capture, approval, payment and bookkeeping — don't claim BillPay uniquely does AP. Revolut's additional layer: the broader banking environment — multi-currency account, international transfers, merchant acceptance, treasury tools around the bill workflow.",s:"“If Pleo already automates AP well, I wouldn't duplicate it. What happens outside Pleo once money moves through the bank and needs to be reconciled?”"},
+      {n:"SPENDESK",t:"Strong AP/procurement; international invoice payments are delivered through Wise. Revolut is native multi-currency + international payments in the same environment, not a two-vendor architecture.",s:"“Spendesk can solve a lot here. How many systems still touch an approved invoice before it is finally paid and reconciled?”"},
+      {n:"TOCONLINE",t:"Complementary, not replacement. Portuguese accounting/invoicing/bank-reconciliation software; it doesn't replace the bank providing multi-currency accounts, FX, transfers, cards or acquiring. Revolut officially integrates with TOConline.",s:"“I'd actually keep TOConline — Revolut integrates with it. What I'd explore is what still happens between TOConline and the bank: payments, cards, FX and reconciliation exceptions.”"}
+    ],
+    noneed:{q:"“Our ERP/accountant already handles this.”",say:"“Perfect. If it's genuinely automated end-to-end, there may be nothing to fix. What happens from ERP approval until the transaction is fully reconciled?”"},
+    caps:"BillPay: invoice data extraction, approval routing, scheduled/recurring/bulk payments, accounting sync (Xero, QuickBooks, TOConline, Cegid Primavera, NetSuite, Odoo).",
+    kpi:"Join Odin: ≥3 hours/week saved · Sunway: 100% of transactions auto-synchronised (€10m+)."
+  },
+  pay: {
+    name:"PAYMENTS / ECOMMERCE",
+    hear:"Shopify · ecommerce · bookings · subscriptions · Stripe · international customers",
+    ask:"“How do customers pay today?” → “What happens after settlement?”",
+    quant:"revenue · auth rate · blended fee · settlement · currencies · reconciliation",
+    line:"“Accept payments while connecting sales more directly with the financial account managing the proceeds.”",
+    proof:"Aer Lingus: 98.5% average authorisation, <10% cart abandonment with Revolut Pay (product proof, not a promised SMB result). Revolut advertises 24-hour settlement direct into the Business environment.",
+    budget:{q:"“Processing is too expensive.”",say:"“Potentially. I wouldn't compare headline rates without knowing your card mix. What's your blended processing cost, authorisation rate and settlement time today?”"},
+    comp:[
+      {n:"STRIPE",t:"World-class payments platform — never claim Revolut has payments and Stripe doesn't. Revolut's explicit extras: Revolut Pay + direct access to the Revolut consumer ecosystem, plus a turnkey stack (cards/expenses, BillPay, multi-currency banking, FX-risk tools) alongside acquiring.",s:"“Stripe is excellent at payments — I wouldn't replace it blindly. What happens after Stripe settles your money? Where do banking, supplier payments, FX, expenses and reconciliation happen?”"},
+      {n:"AIRWALLEX",t:"Also has acquiring, multi-currency settlement, broad finance stack. Clearest Revolut additions: Revolut Pay + consumer network; EEA bank status vs EMI.",s:"“Airwallex already covers a lot. I'd focus the comparison on your actual customer mix and whether Revolut Pay or the broader banking setup gives you anything incremental.”"}
+    ],
+    noneed:{q:"“Stripe already works perfectly.”",say:"“Then I'd keep Stripe. I'd only investigate whether anything after settlement — FX, banking or reconciliation — still creates unnecessary work.”"},
+    caps:"Payment Gateway, plugins (Shopify/WooCommerce), Payment Links, Revolut Pay, Terminal/POS/Tap to Pay, from 0.8% + €0.02, 24-hour settlement, receive & settle in 35+ currencies.",
+    kpi:"Aer Lingus: 98.5% authorisation · <10% cart abandonment with Revolut Pay."
+  },
+  coll: {
+    name:"COLLECTIONS / INVOICING",
+    hear:"Late B2B invoices · reminders · manually matching transfers · payment links",
+    ask:"“How do you collect invoices today?” → “Where does delay occur?”",
+    quant:"DSO · overdue % · reminder hours · reconciliation time",
+    line:"“Reduce avoidable friction between issuing an invoice, getting paid and reconciling the money.”",
+    proof:"No forced case study — strongest product proof: 1m+ invoices created, automatic reminders, multiple payment methods (Revolut Pay/cards/wallets/transfers), eligible card payments reaching the Business account within 24 hours.",
+    budget:{q:"“Our invoicing tool costs almost nothing.”",say:"“Then price probably isn't the reason to change it. I'd look at the full collection process instead. How much work goes into reminders, receiving money and matching payments?”"},
+    comp:[
+      {n:"STRIPE INVOICING",t:"Sophisticated invoicing + payments. Revolut's addition: paid invoices connect directly into the broader Business account, FX, supplier payments, spend and Revolut Pay environment.",s:"“Stripe Invoicing may already solve the invoice itself brilliantly. Once the customer pays, what happens to the money and the reconciliation process?”"},
+      {n:"TOCONLINE",t:"Portuguese accounting/fiscal/invoicing — don't pretend to replace it. It doesn't provide the underlying multi-currency bank account, global transfers, FX, cards, acquiring. Revolut integrates with it.",s:"“I'd keep TOConline for accounting and invoicing. I'd only explore whether the actual collection and banking workflow around it could be simplified.”"},
+      {n:"MOLONI",t:"Strong Portuguese invoicing software connecting to Ifthenpay/Eupago/REDUNIQ/Paybyrd — which illustrates the layer difference: Moloni = invoicing layer; Revolut = banking, FX, transfers, cards and direct acceptance underneath.",s:"“I'd keep Moloni if it's working well. What I'd want to understand is how many other providers you then need for receiving, holding, converting and paying the money.”"}
+    ],
+    noneed:{q:"“Customers simply pay late.”",say:"“Absolutely — Revolut can't fix customer solvency. I'd only check whether payment options, reminders or reconciliation friction are adding avoidable delay.”"},
+    caps:"Invoices with automatic reminders, payment links, Revolut Pay/cards/wallets/transfers as payment methods, funds from eligible card payments in the account within 24 hours.",
+    kpi:"1m+ invoices created on the platform · card proceeds within 24h."
+  },
+  bulk: {
+    name:"BULK PAYMENTS / PAYOUTS",
+    hear:"Many suppliers · contractors · salaries · repetitive payment runs",
+    ask:"“How many recipients per cycle?” → “What happens once the file is ready?”",
+    quant:"recipients · countries · currencies · hours/run · errors · failed payments",
+    line:"“Turn repetitive payout execution into controlled bulk or API-driven workflows.”",
+    proof:"Transformify: payouts across 184 countries; Revolut API enabled same-day payments, automated recipient/payment/reconciliation steps; payment volume through Revolut tripled. Deel also uses Revolut for international employee/contractor payments.",
+    budget:{q:"“Why pay to automate transfers?”",say:"“At low volume, I agree — you probably shouldn't. How many recipients per cycle, and how much finance time goes into preparing, checking and correcting the run?”"},
+    comp:[
+      {n:"WISE",t:"Extremely strong here — batch transfers up to 1,000 payments, so don't claim exclusivity. Revolut adds Revolut Pay/merchant acceptance, BillPay/purchase orders, EEA bank status, cards/expense/treasury workflows around the payout engine.",s:"“Wise is very strong at payouts. Is payout execution itself the whole problem, or does finance still move between Wise, your bank, AP, employee spend and accounting around every cycle?”"},
+      {n:"AIRWALLEX",t:"Similarly strong on global payouts and FX. Concrete differentiation: EEA bank status, Revolut Pay/customer ecosystem, surrounding product environment — not payout coverage.",s:"“Airwallex already solves global payouts well. I'd only push further if another part of the workflow is fragmented. What still sits outside it?”"}
+    ],
+    noneed:{q:"“Our payroll/AP platform already does it.”",say:"“I wouldn't replace payroll or AP calculation. I'm asking specifically about the banking execution after that system has finished its job.”"},
+    caps:"Bulk payments (up to 1,000 salaries at once), approval workflows, Business API payouts (payments, counterparties, FX, cards).",
+    kpi:"Transformify: 184 countries, same-day payments, volume ×3 after implementation."
+  },
+  treasury: {
+    name:"TREASURY / FX RISK",
+    hear:"Surplus cash · known future USD/GBP obligations · FX volatility",
+    ask:"“How much cash consistently sits idle?” / “How predictable are future currency needs?”",
+    quant:"idle balance · current return · future FX exposure · margin impact",
+    line:"“Put genuinely surplus cash to work and make known currency obligations more predictable.”",
+    proof:"Safi: operates in 10+ currencies, uses Business Savings for spare cash, uses Revolut FX Forwards to lock rates for future spend up to £15m and up to 2 years ahead.",
+    budget:{q:"“I'm not paying for a plan just for savings/FX.”",say:"“I agree — it would only make sense if the combined economics justified it. How much cash stays idle, and how material is the FX exposure you're trying to manage?”"},
+    comp:[
+      {n:"WISE",t:"Wise Interest for Business (Europe) = money-market fund investment, capital at risk; Wise Europe says it is not a bank. Revolut Business Savings sits inside Revolut's bank environment. Wise's published Business menu has no customer FX-forward product; Revolut offers FX Forwards + Limit/Stop orders.",s:"“Wise has a credible product for earning a return, but it's structurally different. I'd compare the actual product, liquidity and risk rather than the headline rate. And if you have known future FX exposure, that's another area I'd want to understand.”"},
+      {n:"AIRWALLEX",t:"Has FX risk-management and Yield — don't claim exclusivity. EEA Airwallex Yield = money-market funds, not a savings account; EEA entity = EMI vs Revolut EEA bank.",s:"“Airwallex competes very closely here. The comparison is product structure, protection, economics — and whether consolidating the rest of your finance activity into Revolut creates enough value.”"}
+    ],
+    noneed:{q:"“We need the cash liquid.” / “We don't speculate on FX.”",say:"“Absolutely — I wouldn't touch operating cash, only the portion that consistently remains surplus.” / “Neither am I suggesting that. I'm talking about currency obligations you already know you'll have.”"},
+    caps:"Business Savings (up to 2.25% TANB paid daily, plan-dependent, 24/7 access) + FX Forwards + Limit/Stop orders.",
+    kpi:"Safi: rate-locks for future spend up to £15m, up to 2 years ahead."
+  }
+};
+const LANE_ORDER_DEFAULT = ["fx","cards","bills","pay","coll","bulk","treasury"];
+
+const INDUSTRIES = {
+  wholesale:{name:"Wholesale / Import & Export",main:true,order:["fx","bills","bulk","treasury","cards","pay","coll"],
+    pains:["paying foreign suppliers and converting currencies through bank wires — FX spread + fees + days of delay","manual supplier-invoice approval and reconciliation across markets"]},
+  ecommerce:{name:"Ecommerce / DTC / Retail",main:true,order:["pay","fx","cards","coll","bills","bulk","treasury"],
+    pains:["card-acceptance fees, authorisation rates and slow settlement on international sales","multi-currency proceeds getting converted badly before paying suppliers abroad"]},
+  saas:{name:"SaaS / Tech",main:true,order:["fx","cards","bulk","coll","treasury","bills","pay"],
+    pains:["collecting subscriptions from clients in many countries and losing margin on conversion","paying a distributed team — payroll, contractors and SaaS spend across several currencies"]},
+  travel:{name:"Travel / Hospitality / Tourism",main:false,order:["pay","cards","bulk","fx","coll","bills","treasury"],
+    pains:["international guests paying by card — fees, failed payments and slow settlement","distributed staff/supplier spend and repetitive payouts (owners, guides, hotels)"]},
+  services:{name:"Agencies / Professional Services / Consulting",main:false,order:["coll","fx","cards","bills","bulk","treasury","pay"],
+    pains:["late B2B invoices — chasing, reminders and manually matching transfers","international clients paying in USD/GBP with conversion losses"]},
+  logistics:{name:"Logistics / Transport / Distribution",main:false,order:["fx","bulk","cards","bills","coll","treasury","pay"],
+    pains:["paying carriers and partners across borders every cycle","driver/field-team spend on shared cards with no controls"]},
+  manufacturing:{name:"Manufacturing / Industrial",main:false,order:["fx","bills","treasury","bulk","cards","pay","coll"],
+    pains:["USD-denominated raw-material purchases exposed to FX swings","purchase-order → invoice → payment workflow stitched together manually"]},
+  food:{name:"Food & Beverage / Agro / Wine",main:false,order:["pay","fx","coll","bills","bulk","cards","treasury"],
+    pains:["export sales and international distributors paying by slow bank transfer","seasonal cash cycles with idle cash between harvest/production and sales"]}
+};
+
+const COMPANIES = {
+  piranha:{name:"Piranha Global (Viseu)",industry:"wholesale",contact:"Pedro",
+    insights:["you're mid-migration to Shopify Plus with Sage X3 sync","you export to 40+ countries with ~5,000 wholesale clients"],
+    pains:["collecting wholesale payments in USD/BRL/AUD and losing margin on conversion","deciding the payment stack behind the new Shopify Plus checkouts right now"],
+    lanes:["fx","pay"]},
+  bathigal:{name:"BATHIGAL Import & Export (Águeda)",industry:"wholesale",contact:"[Founder]",
+    insights:["you export construction materials to 20+ African countries","you run the full logistics chain in-house since 2022"],
+    pains:["slow inbound USD/EUR wires from African buyers holding up shipments","FX conversion eating thin trading margins on every corridor"],
+    lanes:["fx","bulk"]},
+  isto:{name:"ISTO. (Lisbon)",industry:"ecommerce",contact:"André",
+    insights:["the Altaz partnership and the London store planned within the year","you already sell worldwide with GBP/USD/CAD thresholds"],
+    pains:["setting up GBP banking, payroll and rent for the London entity","multi-currency DTC settlement converting badly before EUR costs"],
+    lanes:["fx","cards"]},
+  heyharper:{name:"Hey Harper (Lisbon)",industry:"ecommerce",contact:"[Founder]",
+    insights:["you sold to 100+ countries within two years of founding","your store runs global-first with international shipping throughout"],
+    pains:["blended acquiring fees and authorisation rates on international cards","settlement and refunds in currencies you then convert twice"],
+    lanes:["pay","fx"]},
+  didimo:{name:"Didimo (Porto)",industry:"saas",contact:"[CEO]",
+    insights:["you have offices in Vancouver, London and Delaware","clients like Sony and Microsoft paying in USD/GBP"],
+    pains:["USD/GBP receivables landing in EUR accounts with conversion losses","payroll and team spend across 3+ countries with no unified controls"],
+    lanes:["fx","cards"]}
+};
+
+/* ================= STATE + RENDER ================= */
+let sel = {type:null,id:null};       // {type:'company'|'industry', id}
+let clickedLanes = [];               // manual lane clicks (max 2)
+
+function mainTab(n){
+  document.getElementById("tab1").classList.toggle("active",n===1);
+  document.getElementById("tab2").classList.toggle("active",n===2);
+  document.getElementById("mt1").classList.toggle("active",n===1);
+  document.getElementById("mt2").classList.toggle("active",n===2);
+}
+function subTab(n){
+  for(let i=1;i<=3;i++){
+    document.getElementById("sub"+i).classList.toggle("active",i===n);
+    document.getElementById("st"+i).classList.toggle("active",i===n);
+  }
+}
+
+function populateSelectors(){
+  const cs=document.getElementById("selCompany");
+  Object.entries(COMPANIES).forEach(([id,c])=>{
+    const o=document.createElement("option");o.value=id;o.textContent=c.name;cs.appendChild(o);
+  });
+  const om=document.getElementById("ogMain"),oo=document.getElementById("ogOther");
+  Object.entries(INDUSTRIES).forEach(([id,i])=>{
+    const o=document.createElement("option");o.value=id;o.textContent=i.name;
+    (i.main?om:oo).appendChild(o);
+  });
+}
+function pickCompany(id){
+  if(!id){clearSel();return;}
+  sel={type:"company",id};clickedLanes=[...COMPANIES[id].lanes];
+  document.getElementById("selIndustry").value="";
+  renderAll();
+}
+function pickIndustry(id){
+  if(!id){clearSel();return;}
+  sel={type:"industry",id};clickedLanes=INDUSTRIES[id].order.slice(0,2);
+  document.getElementById("selCompany").value="";
+  renderAll();
+}
+function clearSel(){
+  sel={type:null,id:null};clickedLanes=[];
+  document.getElementById("selCompany").value="";
+  document.getElementById("selIndustry").value="";
+  renderAll();
+}
+function toggleLane(id){
+  if(clickedLanes.includes(id)){clickedLanes=clickedLanes.filter(x=>x!==id);}
+  else{clickedLanes.push(id);if(clickedLanes.length>2)clickedLanes.shift();}
+  renderTable();renderValue();
+}
+
+function currentOrder(){
+  if(sel.type==="industry")return INDUSTRIES[sel.id].order;
+  if(sel.type==="company")return INDUSTRIES[COMPANIES[sel.id].industry].order;
+  return LANE_ORDER_DEFAULT;
+}
+
+function renderOpener(){
+  let name="[Name]";
+  if(sel.type==="company")name=COMPANIES[sel.id].contact;
+  document.getElementById("openerBox").innerHTML=
+    `“Hi <b>${name}</b>, my name is Tomás. Listen, I'll be upfront: I'm the representative of <b>Revolut Business</b> here in Lisbon, and I researched your case — I do think you're the right person to talk to. Is it okay if I take <b>30 seconds</b> of your time to explain why I'm calling?”
+     <span class="pt">«Olá ${name==="[Name]"?"[Nome]":name}, chamo-me Tomás. Vou ser direto: represento a Revolut Business aqui em Lisboa e estive a analisar o vosso caso — acho que é a pessoa certa para falar. Posso tomar 30 segundos para explicar porque liguei?»</span>`;
+}
+function renderPitch(){
+  let pains,intro,hint;
+  if(sel.type==="company"){
+    const c=COMPANIES[sel.id];pains=c.pains;
+    intro=`“Thanks. So — I noticed <b>${c.insights[0]}</b> and that <b>${c.insights[1]}</b>. With clients in a similar situation, the two problems I keep seeing are: <b>${pains[0]}</b>, and <b>${pains[1]}</b>. I was wondering — how are you handling that today?”`;
+    hint="Pitch grounded in this company's verified insights. Facts = confirmed; the pains = hypotheses to validate.";
+  }else if(sel.type==="industry"){
+    const i=INDUSTRIES[sel.id];pains=i.pains;
+    intro=`“Thanks. I work with several <b>${i.name}</b> clients here in Portugal, and there are two situations I keep seeing: <b>${pains[0]}</b>, and <b>${pains[1]}</b>. I was wondering — how are you handling that today?”`;
+    hint="Industry mode: the two most common pains for this vertical, said as client experience.";
+  }else{
+    intro=`“Thanks. I work with [industry] clients here in Portugal, and there are two situations I keep seeing: <b>[pain 1]</b> and <b>[pain 2]</b>. I was wondering — how are you handling that today?”`;
+    hint="Generic template — select a company or industry above to auto-fill the two pains.";
+  }
+  document.getElementById("pitchBox").innerHTML=intro;
+  document.getElementById("pitchHint").textContent=hint;
+}
+function renderTable(){
+  const order=currentOrder();
+  const tb=document.getElementById("tbody");tb.innerHTML="";
+  order.forEach((id,idx)=>{
+    const L=LANES[id];
+    const tr=document.createElement("tr");
+    if(idx<2 && sel.type)tr.classList.add("top");
+    if(clickedLanes.includes(id))tr.classList.add("sel");
+    const compHtml=L.comp.map(c=>`<details><summary>${c.n}</summary><p>${c.t}<span class="say">SAY: ${c.s}</span></p></details>`).join("");
+    tr.innerHTML=`<td onclick="toggleLane('${id}')">${sel.type&&idx<2?"⭐ ":""}${L.name}</td>
+      <td>${L.hear}</td><td>${L.ask}</td><td>${L.quant}</td><td>${L.line}</td><td>${L.proof}</td>
+      <td><b>${L.budget.q}</b><span class="say">SAY: ${L.budget.say}</span></td>
+      <td>${compHtml}</td>
+      <td><b>${L.noneed.q}</b><span class="say">SAY: ${L.noneed.say}</span></td>`;
+    tb.appendChild(tr);
+  });
+  document.getElementById("tableHint").textContent = sel.type
+    ? `Rows re-ranked for ${sel.type==="company"?COMPANIES[sel.id].name:INDUSTRIES[sel.id].name}. ⭐ = top-priority lanes (pre-selected). Click lane names to change what feeds the Value block (max 2).`
+    : "No selection: full table in default order. Click lane names to feed the Value block (max 2).";
+}
+function renderValue(){
+  const box=document.getElementById("valueBox");
+  const lanes=clickedLanes.length?clickedLanes:currentOrder().slice(0,2);
+  const capList=lanes.map(id=>`<li><b>${LANES[id].name}:</b> ${LANES[id].caps}</li>`).join("");
+  const proofList=lanes.map(id=>`<li>${LANES[id].proof}</li>`).join("");
+  const kpiList=lanes.map(id=>`<li class="kpi">${LANES[id].kpi}</li>`).join("");
+  box.innerHTML=`
+    <h3>Ask permission first</h3>
+    <div class="script g" style="background:#fff">“Based on what you've told me, would it be okay if I make a recommendation?”
+      <span class="pt">«Com base no que me disse, posso fazer-lhe uma recomendação?»</span></div>
+    <h3>Capabilities to present (only these — max 2)</h3><ul>${capList}</ul>
+    <h3>Proof line (use ONE, only after the pain is confirmed — “We've seen a similar workflow with…”)</h3><ul class="small">${proofList}</ul>
+    <h3>KPI to quote</h3><ul>${kpiList}</ul>`;
+}
+function renderAll(){
+  const st=document.getElementById("selStatus");
+  st.textContent = sel.type==="company" ? `Company mode: ${COMPANIES[sel.id].name}`
+    : sel.type==="industry" ? `Industry mode: ${INDUSTRIES[sel.id].name}` : "Generic mode — full table";
+  renderOpener();renderPitch();renderTable();renderValue();
+}
+populateSelectors();renderAll();
+</script>
+</main>
+</body>
+</html>
