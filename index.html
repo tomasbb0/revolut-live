@@ -454,83 +454,70 @@ const TEN = ["workplace","pergolux","tropicfeel","atelier","pfm","deel","rakuten
 
 /* ================= INDUSTRIES ================= */
 const INDUSTRIES = {
-  wholesale:{name:"Wholesale / Import & Export",namePT:"importação e exportação",main:true,order:["fx","bills","bulk","treasury","cards","pay","coll"],
-    pains:{en:["paying foreign suppliers gets expensive and slow","reconciling supplier invoices across markets"],
-           pt:["pagar a fornecedores estrangeiros fica caro e lento","reconciliar faturas de fornecedores em vários mercados"]}},
-  ecommerce:{name:"Ecommerce / DTC / Retail",namePT:"ecommerce",main:true,order:["pay","fx","cards","coll","bills","bulk","treasury"],
-    pains:{en:["card fees and slow settlement on international sales","converting multi-currency revenue badly"],
-           pt:["taxas de cartão e settlement lento nas vendas internacionais","converter mal a receita multi-moeda"]}},
-  saas:{name:"SaaS / Tech",namePT:"SaaS e tecnologia",main:true,order:["fx","cards","bulk","coll","treasury","bills","pay"],
-    pains:{en:["losing margin collecting international subscriptions","paying a distributed team in several currencies"],
-           pt:["perder margem a cobrar subscrições internacionais","pagar a uma equipa distribuída em várias moedas"]}},
-  travel:{name:"Travel / Hospitality / Tourism",namePT:"turismo e hotelaria",main:false,order:["pay","cards","bulk","fx","coll","bills","treasury"],
-    pains:{en:["guest card payments failing or settling slowly","controlling staff and supplier spend on the road"],
-           pt:["pagamentos de clientes a falhar ou a demorar","controlar despesas de equipa e fornecedores em viagem"]}},
-  services:{name:"Agencies / Professional Services",namePT:"serviços e agências",main:false,order:["coll","fx","cards","bills","bulk","treasury","pay"],
-    pains:{en:["invoices getting paid late","international clients paying in USD or GBP with conversion losses"],
-           pt:["faturas pagas tarde","clientes internacionais a pagar em USD ou GBP com perdas de conversão"]}},
-  logistics:{name:"Logistics / Transport / Distribution",namePT:"logística e transportes",main:false,order:["fx","bulk","cards","bills","coll","treasury","pay"],
-    pains:{en:["paying carriers across borders every cycle","driver and field-team spend with no controls"],
-           pt:["pagar a transportadoras além-fronteiras em cada ciclo","despesas de motoristas e equipas sem controlo"]}},
-  manufacturing:{name:"Manufacturing / Industrial",namePT:"indústria",main:false,order:["fx","bills","treasury","bulk","cards","pay","coll"],
-    pains:{en:["raw-material purchases in USD exposed to FX swings","a manual purchase-to-payment workflow"],
-           pt:["compras de matéria-prima em USD expostas ao câmbio","um fluxo compra-fatura-pagamento manual"]}},
-  food:{name:"Food & Beverage / Agro / Wine",namePT:"alimentação e vinhos",main:false,order:["pay","fx","coll","bills","bulk","cards","treasury"],
-    pains:{en:["international distributors paying by slow bank transfer","cash sitting idle between seasons"],
-           pt:["distribuidores internacionais a pagar por transferência lenta","dinheiro parado entre épocas"]}}
+  wholesale:{name:"Wholesale / Import & Export",main:true,order:["fx","bills","bulk","treasury","cards","pay","coll"],
+    pitch:{en:`"Thanks. We work with Portuguese importers and exporters, and the cost structure is always the same: money crossing borders through the bank quietly loses one to two percent in spreads and fees, and takes days to arrive. On thin trading margins, that's real money. How are you moving money across borders today?"`,
+           pt:`«Obrigado. Trabalhamos com importadores e exportadores portugueses, e a estrutura de custos é sempre a mesma: o dinheiro que cruza fronteiras pelo banco perde um a dois por cento em spreads e comissões, e demora dias a chegar. Com margens curtas, é dinheiro a sério. Como é que estão a mover dinheiro entre países hoje?»`}},
+  ecommerce:{name:"Ecommerce / DTC / Retail",main:true,order:["pay","fx","cards","coll","bills","bulk","treasury"],
+    pitch:{en:`"Thanks. We work with Portuguese brands selling internationally, and the pattern repeats: customers pay in several currencies, the provider converts them its way, and by the time it's euros in the bank a slice of margin is gone, plus settlement takes days. How does that work on your side?"`,
+           pt:`«Obrigado. Trabalhamos com marcas portuguesas que vendem lá fora, e o padrão repete-se: os clientes pagam em várias moedas, o prestador converte à maneira dele, e quando o dinheiro chega em euros já perdeu uma fatia de margem, além do settlement demorar dias. Como é que isso funciona do vosso lado?»`}},
+  saas:{name:"SaaS / Tech",main:true,order:["fx","cards","bulk","coll","treasury","bills","pay"],
+    pitch:{en:`"Thanks. We work with Portuguese tech companies with international clients, and the same two leaks show up: collecting revenue in foreign currencies, and paying a team spread across countries. Both lose a percentage to conversion that nobody tracks. How do you handle that today?"`,
+           pt:`«Obrigado. Trabalhamos com tecnológicas portuguesas com clientes internacionais, e as fugas são sempre as mesmas: cobrar receita em moedas estrangeiras e pagar a uma equipa espalhada por vários países. Ambas perdem uma percentagem na conversão que ninguém mede. Como é que gerem isso hoje?»`}},
+  travel:{name:"Travel / Hospitality / Tourism",main:false,order:["pay","cards","bulk","fx","coll","bills","treasury"],
+    pitch:{en:`"Thanks. We work with tourism operators here in Portugal, and the friction is always at the two ends: international guests paying by card (fees, failed payments, slow settlement), and staff or suppliers being paid on the road. Which end is heavier for you?"`,
+           pt:`«Obrigado. Trabalhamos com operadores de turismo aqui em Portugal, e a fricção está sempre nas duas pontas: clientes internacionais a pagar com cartão (comissões, pagamentos falhados, settlement lento) e equipas ou fornecedores a serem pagos em viagem. Qual das pontas vos pesa mais?»`}},
+  services:{name:"Agencies / Professional Services",main:false,order:["coll","fx","cards","bills","bulk","treasury","pay"],
+    pitch:{en:`"Thanks. We work with Portuguese agencies with international clients, and the classic pattern is money arriving late and arriving smaller: invoices paid past the deadline, and USD or GBP payments losing a slice on conversion. How is collection working for you today?"`,
+           pt:`«Obrigado. Trabalhamos com agências portuguesas com clientes internacionais, e o padrão clássico é o dinheiro chegar tarde e chegar mais pequeno: faturas pagas fora do prazo e pagamentos em USD ou GBP a perder uma fatia na conversão. Como está a correr a cobrança hoje?»`}},
+  logistics:{name:"Logistics / Transport / Distribution",main:false,order:["fx","bulk","cards","bills","coll","treasury","pay"],
+    pitch:{en:`"Thanks. We work with transport and distribution companies, and the recurring pain is the payment cycle itself: carriers and partners paid across borders every cycle, and driver spend on shared cards nobody controls. Does either sound familiar?"`,
+           pt:`«Obrigado. Trabalhamos com empresas de transportes e distribuição, e a dor recorrente é o próprio ciclo de pagamentos: transportadoras e parceiros pagos além-fronteiras em cada ciclo, e despesas de motoristas em cartões partilhados que ninguém controla. Alguma destas vos soa familiar?»`}},
+  manufacturing:{name:"Manufacturing / Industrial",main:false,order:["fx","bills","treasury","bulk","cards","pay","coll"],
+    pitch:{en:`"Thanks. We work with Portuguese industrial companies, and the exposure is usually the raw materials: bought in dollars, so when the exchange rate moves, the margin moves with it, while invoices go through a manual circuit. How do you buy your materials today?"`,
+           pt:`«Obrigado. Trabalhamos com industriais portugueses, e a exposição está normalmente na matéria-prima: comprada em dólares, por isso quando o câmbio mexe, a margem mexe com ele, enquanto as faturas andam num circuito manual. Como é que compram a vossa matéria-prima hoje?»`}},
+  food:{name:"Food & Beverage / Agro / Wine",main:false,order:["pay","fx","coll","bills","bulk","cards","treasury"],
+    pitch:{en:`"Thanks. We work with Portuguese food and wine exporters, and the pattern is money stuck in transit: international distributors paying by slow transfer, with the cash cycle trapped between production and collection. How do your distributors pay you today?"`,
+           pt:`«Obrigado. Trabalhamos com exportadores portugueses de alimentação e vinhos, e o padrão é dinheiro preso em trânsito: distribuidores internacionais a pagar por transferência lenta, com o ciclo de caixa entalado entre a produção e a cobrança. Como é que os vossos distribuidores vos pagam hoje?»`}}
 };
 
 /* ================= COMPANIES ================= */
 const COMPANIES = {
-  piranha:{name:"Piranha Global (Viseu)",industry:"wholesale",contact:"Pedro",role:"Founder",
+  piranha:{name:"Piranha Global (Viseu)",cname:{en:"Piranha",pt:"a Piranha"},industry:"wholesale",contact:"Pedro",role:"Founder",
     angle:"Founder: talk margin and growth, not process detail.",
-    insight:{en:"you're moving your store to Shopify Plus",pt:"estão a migrar a loja para Shopify Plus"},
-    pains:{en:["collecting international payments without losing margin","what sits behind the new checkout"],
-           pt:["cobrar pagamentos internacionais sem perder margem","o que fica por trás do novo checkout"]},
+    pitch:{en:`"Thanks. The reason I called: I saw Piranha is moving the store to Shopify Plus. When a brand selling in 40 countries re-platforms, the payment setup usually gets rebuilt at the same time: what each market's checkout costs, which currencies you charge in, where the money lands. That's normally where margin quietly leaks. Is the payments side part of the migration?"`,
+           pt:`«Obrigado. O motivo da chamada: vi que a Piranha está a migrar a loja para Shopify Plus. Quando uma marca que vende em 40 países muda de plataforma, a parte de pagamentos costuma ser redesenhada ao mesmo tempo: o que custa o checkout em cada mercado, em que moedas cobram, onde cai o dinheiro. É normalmente aí que a margem foge sem se ver. A parte de pagamentos está dentro dessa migração?»`},
     lanes:["fx","pay"]},
-  bathigal:{name:"BATHIGAL Import & Export (Águeda)",industry:"wholesale",contact:"[Founder]",role:"Founder",
+  bathigal:{name:"BATHIGAL Import & Export (Águeda)",cname:{en:"Bathigal",pt:"a Bathigal"},industry:"wholesale",contact:"[Founder]",role:"Founder",
     angle:"Founder of a young trading house: speed and margin per corridor.",
-    insight:{en:"you ship to more than 20 African markets",pt:"exportam para mais de 20 mercados africanos"},
-    pains:{en:["slow inbound payments from buyers","FX eating thin trading margins"],
-           pt:["recebimentos lentos dos clientes","câmbio a comer margens curtas"]},
+    pitch:{en:`"Thanks. The reason I called: you're selling construction materials into more than 20 African markets. In those corridors the problem is usually the money coming back: buyers paying by international transfer, banks taking days and a spread on every conversion, and the margin per container is thin. How are your customers paying you today?"`,
+           pt:`«Obrigado. O motivo da chamada: vocês vendem materiais de construção para mais de 20 mercados africanos. Nesses corredores o problema costuma ser o dinheiro a voltar: clientes a pagar por transferência internacional, bancos a demorar dias e a cobrar spread em cada conversão, e a margem por contentor é curta. Como é que os vossos clientes vos pagam hoje?»`},
     lanes:["fx","bulk"]},
-  isto:{name:"ISTO. (Lisbon)",industry:"ecommerce",contact:"André",role:"CFO",
+  isto:{name:"ISTO. (Lisbon)",cname:{en:"ISTO",pt:"a ISTO"},industry:"ecommerce",contact:"André",role:"CFO",
     angle:"CFO: cost, control, reconciliation, close speed. Numbers, not vision.",
-    insight:{en:"you're opening in London this year",pt:"vão abrir em Londres este ano"},
-    pains:{en:["setting up GBP banking and payroll","multi-currency sales converting badly"],
-           pt:["montar banca e salários em GBP","vendas multi-moeda mal convertidas"]},
+    pitch:{en:`"Thanks. The reason I called: I saw ISTO is opening in London this year. A first foreign store usually means GBP rent, GBP payroll, and sales in four currencies converting into euro costs, and that's exactly the moment the banking setup gets decided. Have you closed how you'll run the GBP side?"`,
+           pt:`«Obrigado. O motivo da chamada: vi que a ISTO vai abrir em Londres este ano. Uma primeira loja lá fora costuma significar renda em libras, salários em libras e vendas em quatro moedas a converter para custos em euros, e é exatamente nessa altura que se decide o setup bancário. Já fecharam como vão gerir a parte em libras?»`},
     lanes:["fx","cards"]},
-  heyharper:{name:"Hey Harper (Lisbon)",industry:"ecommerce",contact:"[Founder]",role:"Founder",
+  heyharper:{name:"Hey Harper (Lisbon)",cname:{en:"Hey Harper",pt:"a Hey Harper"},industry:"ecommerce",contact:"[Founder]",role:"Founder",
     angle:"Founder: conversion and margin on global sales.",
-    insight:{en:"you sell to more than 100 countries",pt:"vendem para mais de 100 países"},
-    pains:{en:["card fees and authorisation on international sales","converting settlement twice"],
-           pt:["taxas e autorização nos cartões internacionais","converter o settlement duas vezes"]},
+    pitch:{en:`"Thanks. The reason I called: Hey Harper sells into more than 100 countries. At that spread, the checkout economics start to dominate: card fees and authorisation rates per market, and settlement arriving in currencies that get converted twice before they're useful. How closely do you track your blended cost per market?"`,
+           pt:`«Obrigado. O motivo da chamada: a Hey Harper vende para mais de 100 países. Com essa dispersão, a economia do checkout começa a mandar: comissões e taxas de autorização por mercado, e settlement a chegar em moedas que são convertidas duas vezes até serem úteis. Até que ponto acompanham o custo real por mercado?»`},
     lanes:["pay","fx"]},
-  didimo:{name:"Didimo (Porto)",industry:"saas",contact:"[CEO]",role:"CEO",
+  didimo:{name:"Didimo (Porto)",cname:{en:"Didimo",pt:"a Didimo"},industry:"saas",contact:"[CEO]",role:"CEO",
     angle:"CEO: runway and focus. Less ops noise, more building.",
-    insight:{en:"you run offices in three countries",pt:"têm escritórios em três países"},
-    pains:{en:["USD and GBP revenue landing badly in EUR","team spend across countries with no single control"],
-           pt:["receita em USD e GBP a cair mal em EUR","despesas de equipa em vários países sem controlo único"]},
+    pitch:{en:`"Thanks. The reason I called: you run offices in three countries, with clients like Sony paying in dollars. That usually means USD revenue landing in euro accounts with a conversion cut on the way in, and team spend in three currencies with nothing consolidating it. How is that set up today?"`,
+           pt:`«Obrigado. O motivo da chamada: vocês têm escritórios em três países, com clientes como a Sony a pagar em dólares. Isso costuma significar receita em USD a cair em contas em euros com um corte na conversão à entrada, e despesas de equipa em três moedas sem nada a consolidar. Como é que isso está montado hoje?»`},
     lanes:["fx","cards"]}
 };
 
 /* ================= I18N ================= */
 const T = {
   opener:{
-    en:(n)=>`"Hi <b>${n}</b>, my name is Tomás. I'll be upfront: I represent <b>Revolut Business</b> here in Lisbon, and I researched your case. I think you're the right person to talk to. Can I take <b>30 seconds</b> to explain why I'm calling?"`,
-    pt:(n)=>`«Olá <b>${n}</b>, chamo-me Tomás. Vou ser direto: represento a <b>Revolut Business</b> aqui em Lisboa e estive a analisar o vosso caso. Acho que é a pessoa certa para falar. Posso tomar <b>30 segundos</b> para explicar porque liguei?»`
-  },
-  pitchCompany:{
-    en:(ins,a,b)=>`"Thanks. I noticed <b>${ins}</b>. With similar clients, two things usually come up: <b>${a}</b>, and <b>${b}</b>. How are you handling that today?"`,
-    pt:(ins,a,b)=>`«Obrigado. Reparei que <b>${ins}</b>. Em clientes parecidos, aparecem normalmente duas coisas: <b>${a}</b> e <b>${b}</b>. Como é que estão a gerir isso hoje?»`
-  },
-  pitchIndustry:{
-    en:(ind,a,b)=>`"Thanks. I work with <b>${ind}</b> clients here in Portugal, and two things keep coming up: <b>${a}</b>, and <b>${b}</b>. How are you handling that today?"`,
-    pt:(ind,a,b)=>`«Obrigado. Trabalho com clientes de <b>${ind}</b> aqui em Portugal e há duas coisas que aparecem sempre: <b>${a}</b> e <b>${b}</b>. Como é que estão a gerir isso hoje?»`
+    en:(n,co)=>`"Hi <b>${n}</b>, this is Tomás, from <b>Revolut Business</b> here in Lisbon. I know you weren't expecting this call, so I'll be direct: I looked into <b>${co}</b> before calling, and I think you're the right person. Can I take <b>30 seconds</b> to explain why, and then you tell me if it makes sense?"`,
+    pt:(n,co)=>`«Olá <b>${n}</b>, fala o Tomás, da <b>Revolut Business</b>, aqui em Lisboa. Sei que não estava à espera desta chamada, por isso vou ser direto: estive a ver <b>${co}</b> antes de ligar e acho que é a pessoa certa. Dá-me <b>30 segundos</b> para explicar porquê, e depois diz-me se faz sentido?»`
   },
   pitchGeneric:{
-    en:()=>`"Thanks. I work with [industry] clients here in Portugal, and two things keep coming up: <b>[pain 1]</b>, and <b>[pain 2]</b>. How are you handling that today?"`,
-    pt:()=>`«Obrigado. Trabalho com clientes de [setor] aqui em Portugal e há duas coisas que aparecem sempre: <b>[dor 1]</b> e <b>[dor 2]</b>. Como é que estão a gerir isso hoje?»`
+    en:()=>`"Thanks. The reason I called: <b>[observable fact about them]</b>. When a company does that, <b>[mechanism: why the pain follows]</b>. That usually costs <b>[one named cost]</b>. <b>[Question pointing back at them]</b>?"`,
+    pt:()=>`«Obrigado. O motivo da chamada: <b>[facto observável]</b>. Quando uma empresa faz isso, <b>[mecanismo: porque é que a dor aparece]</b>. Isso costuma custar <b>[um custo concreto]</b>. <b>[Pergunta apontada a eles]</b>?»`
   },
   recapLine:{
     en:`"So today you're doing <b>[X]</b>, the main issue is <b>[Y]</b>, and it's costing you <b>[Z]</b>. Is that fair?"`,
@@ -624,8 +611,9 @@ function bestCaseFor(laneId){
 /* ================= RENDER ================= */
 function renderOpener(){
   let name = lang==="en" ? "[Name]" : "[Nome]";
-  if(sel.type==="company")name=COMPANIES[sel.id].contact;
-  document.getElementById("openerBox").innerHTML=T.opener[lang](name);
+  let co = lang==="en" ? "your company" : "a vossa empresa";
+  if(sel.type==="company"){name=COMPANIES[sel.id].contact;co=COMPANIES[sel.id].cname[lang];}
+  document.getElementById("openerBox").innerHTML=T.opener[lang](name,co);
   const chip=document.getElementById("roleChip");
   if(sel.type==="company"){chip.style.display="inline-block";chip.textContent=COMPANIES[sel.id].role+" · "+COMPANIES[sel.id].angle;}
   else chip.style.display="none";
@@ -634,16 +622,15 @@ function renderPitch(){
   let html,hint;
   if(sel.type==="company"){
     const c=COMPANIES[sel.id];
-    html=T.pitchCompany[lang](c.insight[lang],c.pains[lang][0],c.pains[lang][1]);
-    hint="One insight, two pains, one question. Details stay in your pocket for discovery. "+c.angle;
+    html=c.pitch[lang];
+    hint="Reason for call → mechanism → one cost → question. Details stay in your pocket for discovery. "+c.angle;
   }else if(sel.type==="industry"){
     const i=INDUSTRIES[sel.id];
-    const iname = lang==="en"?i.name:i.namePT;
-    html=T.pitchIndustry[lang](iname,i.pains[lang][0],i.pains[lang][1]);
-    hint="Two most common pains for this vertical, said as client experience.";
+    html=i.pitch[lang];
+    hint="Pattern claim + mechanism for this vertical. One question, then silence.";
   }else{
     html=T.pitchGeneric[lang]();
-    hint="Generic template. Select a company or industry to auto-fill the two pains.";
+    hint="Skeleton: fact → mechanism → cost → question. Select a company or industry for the written version.";
   }
   document.getElementById("pitchBox").innerHTML=html;
   document.getElementById("pitchHint").textContent=hint;
