@@ -654,7 +654,8 @@ function populateSelectors(){
   const om=document.getElementById("ogMain"),oo=document.getElementById("ogOther");
   Object.entries(INDUSTRIES).forEach(([id,i])=>{const o=document.createElement("option");o.value=id;o.textContent=i.name;(i.main?om:oo).appendChild(o);});
 }
-function presetLanes(ids){laneState={};ids.forEach(id=>laneState[id]=2);}
+let prioSeq=[];
+function presetLanes(ids){laneState={};prioSeq=[...ids];ids.forEach(id=>laneState[id]=2);}
 function pickCompany(id){
   if(!id){clearSel();return;}
   sel={type:"company",id};presetLanes(COMPANIES[id].lanes);
@@ -672,6 +673,8 @@ function clearSel(){
 }
 function toggleLane(id){
   laneState[id]=((laneState[id]||0)+1)%3;
+  prioSeq=prioSeq.filter(x=>x!==id);
+  if(laneState[id]===2)prioSeq.push(id);
   renderTable();renderRecap();renderValue();
 }
 function currentOrder(){
@@ -683,11 +686,11 @@ function currentOrder(){
   }
   return LANE_ORDER_DEFAULT;
 }
-function prioLanes(){return currentOrder().filter(id=>laneState[id]===2);}
+function prioLanes(){return prioSeq.filter(id=>laneState[id]===2);}
 function mentionLanes(){return currentOrder().filter(id=>laneState[id]===1);}
 function valueLanes(){
   const p=prioLanes();
-  if(p.length)return p.slice(0,2);
+  if(p.length)return p.slice(-2).reverse();
   const m=mentionLanes();
   if(m.length)return m.slice(0,2);
   return currentOrder().slice(0,2);
