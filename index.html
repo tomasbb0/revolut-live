@@ -499,32 +499,43 @@ const LANE_ORDER_DEFAULT = ["fx","cards","bills","pay","coll","bulk","treasury"]
 
 /* ================= CASES ================= */
 const CASES = {
-  workplace:{name:"The Workplace Depot",ctx:"Family-run industrial products (20k+ SKUs), global customers",res:"~£30k FX saved in 6 months (~£5k/month) vs their old traditional bank",lanes:["fx"],ind:["wholesale","logistics","food","manufacturing"]},
-  pergolux:{name:"PERGOLUX",ctx:"Luxury pergolas across 14 countries; suppliers/customers EU, US, Chile",res:"€25k+ transfer fees saved in 6 months; ~5 days to seconds; manufacturers start 3-4 days earlier",lanes:["fx"],ind:["wholesale","manufacturing","food"]},
-  tropicfeel:{name:"Tropicfeel",ctx:"Sustainable travel-gear ecommerce, 140+ countries, global manufacturers",res:"suppliers paid on time; saved on international payments/FX while scaling",lanes:["fx"],ind:["ecommerce","manufacturing","food"]},
-  atelier:{name:"Atelier Amour",ctx:"French fashion startup selling internationally, small team",res:"43% saved on FX costs + 5h/week admin saved",lanes:["fx","cards"],ind:["ecommerce","services"]},
-  inkse:{name:"INKSE",ctx:"Australian ecommerce scale-up, overseas suppliers + USD subscriptions",res:"$62k FX saved in 9 months; tech projects delivered 60% faster",lanes:["fx"],ind:["ecommerce"]},
-  paloma:{name:"Paloma Wool",ctx:"Spanish fashion DTC expanding into US/UK",res:"100% of payments taken in customers' local currency; better FX + buying experience",lanes:["pay"],ind:["ecommerce"]},
-  wild:{name:"Wild",ctx:"UK personal-care DTC, rapid multi-country expansion, tiny finance team",res:"400% YoY revenue growth period; market-entry decisions in weeks not months",lanes:["cards"],ind:["ecommerce"]},
-  rakuten:{name:"Rakuten France",ctx:"Major ecommerce marketplace, many internal teams",res:"25%+ less time on expense reporting; payment processing halved",lanes:["cards"],ind:["ecommerce","saas","services","logistics","wholesale","manufacturing","travel","food"]},
-  pfm:{name:"PFM Intelligence",ctx:"Location-intelligence SaaS; offices EU, UK, CH, US",res:"up to 0.8% saved per FX transaction; 30 min/day less reconciliation; close half-day faster",lanes:["fx","bills"],ind:["saas","services"]},
-  deel:{name:"Deel",ctx:"Global payroll/HR SaaS; talent in 150+ countries / 120+ currencies",res:"instant Revolut-to-Revolut withdrawals; bulk/API payments scaled with them",lanes:["bulk"],ind:["saas","services"]},
-  power:{name:"ThePower Business School",ctx:"Spanish EdTech; previously 5 Spanish banks; €500k+ monthly outgoings",res:"replaced a fragmented 5-bank setup; expanded into 50 markets",lanes:["fx","bills"],ind:["saas","services"]},
-  creditspring:{name:"Creditspring",ctx:"UK fintech; manual customer disbursements unsustainable",res:"25% less manual admin; ~187k loans processed; errors sharply reduced",lanes:["bulk"],ind:["saas"]},
-  transformify:{name:"Transformify",ctx:"Global workforce platform paying freelancers in 184 countries",res:"same-day payouts; payment volume x3 after API implementation",lanes:["bulk"],ind:["saas","services"]},
-  evy:{name:"Evy",ctx:"Product-protection tech supplying European retailers",res:"replaced 10 separate bank accounts; 70% growth, 3x customer base in period",lanes:["fx"],ind:["saas","services"]},
-  lyca:{name:"Lyca Mobile",ctx:"Telecom across 22 countries",res:"same-day provider payments routine; centralised cashflow across markets",lanes:["fx","bulk"],ind:["saas","logistics"]},
-  bizaway:{name:"BizAway",ctx:"B2B travel booking; 28 to ~160 employees",res:"thousands of global virtual-card transactions monthly from one central account",lanes:["cards"],ind:["travel","saas"]},
-  vola:{name:"VOLA",ctx:"PL/RO travel agency buying airline tickets continuously",res:"auto virtual card per reservation; unlocked 2 days' worth of sales revenue from prepaid cards",lanes:["cards","bulk"],ind:["travel"]},
-  weroad:{name:"WeRoad",ctx:"Adventure tours in 100+ countries; coordinators spend locally",res:"moved off cash; staff spend from destination-currency budgets; FX savings",lanes:["cards"],ind:["travel"]},
-  sunway:{name:"Sunway",ctx:"Irish tour operator, 70+ destinations, huge flight volumes",res:"100% of transactions synced to accounting; countless hours on €10m+ reconciled",lanes:["bills"],ind:["travel","logistics"]},
-  aerlingus:{name:"Aer Lingus",ctx:"Major airline, high-value international online bookings",res:"98.5% average authorisation; <10% cart abandonment with Revolut Pay",lanes:["pay","coll"],ind:["travel","logistics","ecommerce"]},
-  karpaten:{name:"Karpaten Turism",ctx:"Romanian global tour operator; travelling guides/teams",res:"25%+ FX cost reduction + 20% less time processing expenses",lanes:["fx","cards"],ind:["travel"]},
-  kiwi:{name:"Kiwi.com",ctx:"Travel-tech buying tickets at massive scale",res:"virtual-card acceptance improved; ~50,000 ticket sales/day context",lanes:["cards"],ind:["travel"]},
-  spotahome:{name:"Spotahome",ctx:"Rental marketplace, 26 countries / 100 cities",res:"CFO saved 8 h/week on account admin; automation freed ~2 FTEs",lanes:["cards","fx"],ind:["travel","saas","services"]},
-  safi:{name:"Safi",ctx:"Recycled-materials trading; teams + flows in 10+ currencies",res:"FX Forwards lock rates for future spend up to £15m, 2 years ahead; Savings for spare cash",lanes:["treasury"],ind:["wholesale","manufacturing"]},
-  rhodes:{name:"Rhodes Music",ctx:"Small international team, overseas transactions",res:"~5% saved on overseas transactions (Finance Director quote)",lanes:["fx"],ind:["wholesale","manufacturing"]},
-  odin:{name:"Join Odin",ctx:"BillPay user",res:"3+ hours/week saved coding bills, approvals and payments",lanes:["bills"],ind:["saas","services"]}
+  workplace:{name:"The Workplace Depot",t:"WHOLESALE",ctx:"Family-run UK business selling 20,000+ industrial and workplace products to customers worldwide",res:"~£30k FX saved in 6 months (~£5k/month) vs their old traditional bank",lanes:["fx"],ind:["wholesale","logistics","food","manufacturing"]},
+  pergolux:{name:"PERGOLUX",t:"WHOLESALE",ctx:"Luxury pergola maker selling in 14 countries; suppliers and customers across Europe, the US and Chile (LATAM corridor)",res:"€25k+ transfer fees saved in 6 months; ~5 days to seconds; manufacturers start 3-4 days earlier",lanes:["fx"],ind:["wholesale","manufacturing","food"]},
+  tropicfeel:{name:"Tropicfeel",t:"ECOM",ctx:"Retail manufacturer + ecommerce brand (Revolut's own label): sustainable travel gear sold in 140+ countries, manufacturers worldwide",res:"suppliers paid on time; saved on international payments/FX while scaling",lanes:["fx"],ind:["ecommerce","manufacturing","food"]},
+  atelier:{name:"Atelier Amour",t:"ECOM",ctx:"Small French fashion brand selling internationally with a tiny team",res:"43% saved on FX costs + 5h/week admin saved",lanes:["fx","cards"],ind:["ecommerce","services"]},
+  inkse:{name:"INKSE",t:"ECOM",ctx:"Australian ecommerce scale-up: overseas suppliers + software subscriptions in USD",res:"$62k FX saved in 9 months; tech projects delivered 60% faster",lanes:["fx"],ind:["ecommerce"]},
+  paloma:{name:"Paloma Wool",t:"ECOM",ctx:"Spanish fashion DTC brand expanding into the US and UK",res:"100% of payments taken in customers' local currency; better FX + buying experience",lanes:["pay"],ind:["ecommerce"]},
+  wild:{name:"Wild",t:"ECOM",ctx:"UK personal-care DTC brand in fast multi-country expansion with a tiny finance team",res:"400% YoY revenue growth period; market-entry decisions in weeks not months",lanes:["cards"],ind:["ecommerce"]},
+  rakuten:{name:"Rakuten France",t:"ECOM",ctx:"Major French ecommerce marketplace with many internal teams",res:"25%+ less time on expense reporting; payment processing halved",lanes:["cards"],ind:["ecommerce","saas","services","logistics","wholesale","manufacturing","travel","food"]},
+  pfm:{name:"PFM Intelligence",t:"SAAS",ctx:"Location-intelligence SaaS with a small finance team and offices across EU, UK, Switzerland and US",res:"up to 0.8% saved per FX transaction; 30 min/day less reconciliation; close half-day faster",lanes:["fx","bills"],ind:["saas","services"]},
+  deel:{name:"Deel",t:"SAAS",ctx:"Global payroll/HR SaaS paying talent in 150+ countries / 120+ currencies",res:"instant Revolut-to-Revolut withdrawals; bulk/API payments scaled with them",lanes:["bulk"],ind:["saas","services"]},
+  power:{name:"ThePower Business School",t:"SAAS",ctx:"Spanish EdTech scale-up collecting from students in 50 markets; previously juggled 5 Spanish banks",res:"replaced a fragmented 5-bank setup; expanded into 50 markets",lanes:["fx","bills","coll"],ind:["saas","services"]},
+  creditspring:{name:"Creditspring",t:"SAAS",ctx:"UK fintech whose manual customer disbursements became unsustainable at scale",res:"25% less manual admin; ~187k loans processed; errors sharply reduced",lanes:["bulk"],ind:["saas"]},
+  transformify:{name:"Transformify",t:"SAAS",ctx:"Workforce platform paying freelancers and vendors in 184 countries",res:"same-day payouts; payment volume x3 after API implementation",lanes:["bulk"],ind:["saas","services"]},
+  evy:{name:"Evy",t:"SAAS",ctx:"Product-protection tech serving European retailers; had 10 separate bank accounts before consolidating",res:"replaced 10 bank accounts; 70% growth, 3x customer base in period",lanes:["fx","coll"],ind:["saas","services"]},
+  lyca:{name:"Lyca Mobile",t:"SAAS",ctx:"Telecom operating across 22 countries with regional supplier payments",res:"same-day provider payments routine; centralised cashflow across markets",lanes:["fx","bulk"],ind:["saas","logistics"]},
+  bizaway:{name:"BizAway",t:"SAAS",ctx:"B2B travel-booking platform that grew 28 to ~160 employees paying hotels globally",res:"thousands of global virtual-card transactions monthly from one central account",lanes:["cards"],ind:["travel","saas"]},
+  vola:{name:"VOLA",t:"ECOM",ctx:"Polish/Romanian travel agency buying airline tickets continuously per customer order",res:"auto virtual card per reservation; unlocked 2 days' worth of sales revenue from prepaid cards",lanes:["cards","bulk"],ind:["travel"]},
+  weroad:{name:"WeRoad",t:"ECOM",ctx:"Consumer adventure-tour brand running trips in 100+ countries with coordinators spending locally",res:"moved off cash; staff spend from destination-currency budgets; FX savings",lanes:["cards"],ind:["travel"]},
+  sunway:{name:"Sunway",t:"ECOM",ctx:"Irish tour operator, 70+ destinations, reconciling huge flight-payment volumes",res:"100% of transactions synced to accounting; countless hours on €10m+ reconciled",lanes:["bills"],ind:["travel","logistics"]},
+  aerlingus:{name:"Aer Lingus",t:"ECOM",ctx:"Major airline selling high-value international bookings online (product proof, not an SMB comparator)",res:"98.5% average authorisation; <10% cart abandonment with Revolut Pay",lanes:["pay","coll"],ind:["travel","logistics","ecommerce"]},
+  karpaten:{name:"Karpaten Turism",t:"ECOM",ctx:"Romanian global tour operator with travelling guides incurring expenses across currencies",res:"25%+ FX cost reduction + 20% less time processing expenses",lanes:["fx","cards"],ind:["travel"]},
+  kiwi:{name:"Kiwi.com",t:"ECOM",ctx:"Travel-tech platform buying airline tickets at massive scale via virtual cards",res:"virtual-card acceptance improved; ~50,000 ticket sales/day context",lanes:["cards"],ind:["travel"]},
+  spotahome:{name:"Spotahome",t:"ECOM",ctx:"Spanish online rentals marketplace: money in and out across 26 countries / 100 cities, global team spend",res:"CFO saved 8 h/week on account admin; automation freed ~2 FTEs",lanes:["cards","fx","bulk"],ind:["travel","saas","services"]},
+  safi:{name:"Safi",t:"WHOLESALE",ctx:"Recycled-materials trading business with teams and flows in 10+ currencies",res:"FX Forwards lock rates for future spend up to £15m, 2 years ahead; Savings for spare cash",lanes:["treasury"],ind:["wholesale","manufacturing"]},
+  rhodes:{name:"Rhodes Music",t:"WHOLESALE",ctx:"Small premium-instruments company with an international team and overseas transactions",res:"~5% saved on overseas transactions (Finance Director quote)",lanes:["fx"],ind:["wholesale","manufacturing"]},
+  odin:{name:"Join Odin",t:"SAAS",ctx:"Tech company running its supplier bills through BillPay",res:"3+ hours/week saved coding bills, approvals and payments",lanes:["bills"],ind:["saas","services"]}
+};
+const COMPANY_CASES = {
+  asp:{fx:"workplace",bills:"odin"},
+  piranha:{fx:"tropicfeel",pay:"paloma"},
+  empor:{fx:"workplace",bills:"odin"},
+  platforme:{fx:"pfm",cards:"atelier"},
+  diroots:{coll:"power",fx:"pfm"},
+  visor:{coll:"power",cards:"spotahome"},
+  reflaunt:{bulk:"transformify",fx:"spotahome"},
+  isto:{cards:"wild",fx:"atelier"},
+  trot:{fx:"rhodes",bills:"odin"}
 };
 const TEN = ["workplace","pergolux","tropicfeel","atelier","pfm","deel","rakuten","bizaway","sunway","aerlingus"];
 
@@ -714,6 +725,10 @@ function currentIndustryId(){
   return null;
 }
 function bestCaseFor(laneId){
+  if(sel.type==="company"){
+    const cc=COMPANY_CASES[sel.id];
+    if(cc&&cc[laneId])return CASES[cc[laneId]];
+  }
   const ind=currentIndustryId();
   let pool=Object.values(CASES).filter(c=>c.lanes.includes(laneId));
   if(ind){const t=pool.filter(c=>c.ind.includes(ind));if(t.length)pool=t;}
@@ -810,13 +825,13 @@ function renderClose(){
 function renderCases(){
   document.getElementById("caseTen").innerHTML=TEN.map(k=>{
     const c=CASES[k];
-    return `<div class="casecard small"><b>${c.name}</b> · ${c.ctx} → <span class="res">${c.res}</span></div>`;
+    return `<div class="casecard small"><span class="ptag">${c.t}</span> <b>${c.name}</b> · ${c.ctx} → <span class="res">${c.res}</span></div>`;
   }).join("");
   let html="";
   Object.entries(INDUSTRIES).forEach(([iid,i])=>{
     const cs=Object.values(CASES).filter(c=>c.ind.includes(iid));
     if(!cs.length)return;
-    html+=`<h3>${i.name}</h3>`+cs.map(c=>`<div class="casecard small"><b>${c.name}</b> · ${c.ctx} → <span class="res">${c.res}</span></div>`).join("");
+    html+=`<h3>${i.name}</h3>`+cs.map(c=>`<div class="casecard small"><span class="ptag">${c.t}</span> <b>${c.name}</b> · ${c.ctx} → <span class="res">${c.res}</span></div>`).join("");
   });
   document.getElementById("caseFull").innerHTML=html;
 }
