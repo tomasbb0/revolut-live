@@ -82,6 +82,7 @@
   tr.prio td:first-child{background:var(--acc);color:#fff}
   tr.prio td{background:var(--acc-soft)}
   td .say{display:block;margin-top:4px;font-style:italic;color:#575c6f}
+  #masterTable td:nth-child(8), #masterTable th:nth-child(8){border-left:3px solid var(--acc)}
   .nxt{display:block;margin-top:5px;color:var(--green);font-size:.75rem;font-weight:600}
   details{margin:3px 0}
   details summary{cursor:pointer;font-weight:700;font-size:.74rem;color:var(--acc)}
@@ -378,8 +379,8 @@ const LANES = {
   fx: {
     name:"FX + INTERNATIONAL PAYMENTS",
     hear:"Imports/exports · foreign suppliers · USD/GBP · many markets/currencies",
-    ask:"\"How are you handling that today?\" → \"Where does the exchange happen?\"",
-    quant:"€ exchanged/month · currencies · what the bank keeps · transfers/month · days of delay",
+    ask:"\"Which currencies come in and go out?\" → \"Who does the exchange today, the bank or someone else?\"",
+    quant:"\"Roughly how much crosses borders in a normal month?\" · \"How long does a transfer take to arrive?\"",
     line:"\"Put your currencies, exchange and international payments in one place. Less cost, less work.\"",
     proof:"Workplace Depot: ~£30k FX saved in 6 months vs their old traditional bank. PERGOLUX: €25k+ saved in transfer fees in 6 months; transfers went from ~5 days to seconds.",
     budget:{q:"\"It's expensive.\"",say:"\"Completely fair. But expensive compared to what? I would put it next to what exchange and transfers already cost you today. Roughly what is that in a normal month?\"",hint:"Their volume x 1-2% = what the bank keeps. Only then land the price as contrast: 'so roughly €X a year stays at the bank... this plan is €35 a month.'"},
@@ -394,8 +395,8 @@ const LANES = {
   cards: {
     name:"CARDS + EXPENSES",
     hear:"Travel · growing teams · subscriptions · shared cards · reimbursements · receipt chasing",
-    ask:"\"How does an employee purchase work today?\" → \"What happens afterwards?\"",
-    quant:"users · purchases/month · reimbursement time · receipt chasing · finance hours",
+    ask:"\"Who has a card today, and who pays out of pocket?\" → \"What happens to the receipt after someone buys?\"",
+    quant:"\"Roughly how many purchases a month?\" · \"How long does a reimbursement take?\" · \"How many hours does finance lose on this?\"",
     line:"\"Give the team cards with rules. Approvals, receipts and matching then happen mostly by themselves.\"",
     proof:"Rakuten France: 25%+ less time on expense reports, payment processing halved. BizAway: thousands of global virtual-card payments monthly from one central account.",
     budget:{q:"\"Why pay for expense software?\"",say:"\"Fair. The question is whether the current process costs more than the tool. How much time goes into approvals, missing receipts and reimbursements each month?\"",hint:"Hours x salary = € per month. Then contrast: 'that is €X a month in admin... the tool is €8 per person.'"},
@@ -411,8 +412,8 @@ const LANES = {
   bills: {
     name:"BILLS + AP + RECONCILIATION",
     hear:"Many suppliers · PDF invoices · approval chasing · ERP · CSVs · manual month-end",
-    ask:"\"Walk me through a bill from arrival to fully matched.\" → \"Where is it still manual?\"",
-    quant:"invoices/month · people touching each · hours · errors · month-end time",
+    ask:"\"How does a bill arrive, email, PDF, paper?\" → \"Who approves it, and who actually pays it?\"",
+    quant:"\"Roughly how many invoices a month?\" · \"How many people touch each one?\" · \"How long does month-end take?\"",
     line:"\"One flow: scan the invoice, approve it, pay it, match it. No stitching by hand.\"",
     proof:"Join Odin: 3+ hours/week saved on coding bills, approvals, payments. Sunway: 100% of transactions matched automatically; €10m+ of flight payments reconciled via the API.",
     budget:{q:"\"We don't want another finance tool.\"",say:"\"Neither would I if it just adds a screen. It only makes sense if it removes real work. How many people touch a bill today, and for how long?\"",hint:"3+ people or many hours: hours x salary, out loud. Then contrast: 'and this is not another tool, it is inside a €35/month plan.'"},
@@ -428,8 +429,8 @@ const LANES = {
   pay: {
     name:"PAYMENTS / ECOMMERCE",
     hear:"Shopify · ecommerce · bookings · subscriptions · Stripe · international customers",
-    ask:"\"How do customers pay today?\" → \"What happens after the money is paid out?\"",
-    quant:"revenue · % approved · blended fee · days to settle · currencies · matching work",
+    ask:"\"Which provider sits behind the checkout today?\" → \"What happens to the money after it's paid out?\"",
+    quant:"\"Roughly what share of payments fail?\" · \"What's your average card fee?\" · \"How many days until the money lands?\"",
     line:"\"Take payments and have the money land in the same account you run the business from, next day.\"",
     proof:"Aer Lingus: 98.5% of Revolut Pay payments approved, under 10% abandoned carts (product proof). Money lands in the business account within 24 hours.",
     budget:{q:"\"Processing is too expensive.\"",say:"\"Maybe. Rates only mean something next to your card mix. What is your blended rate, how many payments fail, and how long until the money arrives?\"",hint:"Gap vs 0.8% + €0.02 x monthly volume = € per year. Say the yearly number first, the rate second."},
@@ -444,8 +445,8 @@ const LANES = {
   coll: {
     name:"COLLECTIONS / INVOICING",
     hear:"Late B2B invoices · reminders · matching transfers by hand · payment links",
-    ask:"\"How do you collect invoices today?\" → \"Where do the days get lost?\"",
-    quant:"days to get paid · % overdue · hours chasing · hours matching",
+    ask:"\"How does an invoice go out, and how does the money come back?\" → \"Who chases the late ones?\"",
+    quant:"\"Roughly how many days late do clients pay?\" · \"What share is overdue right now?\"",
     line:"\"Make getting paid easier: send the invoice, remind automatically, match the money when it lands.\"",
     proof:"Product proof: 1m+ invoices created on the platform, automatic reminders, pay by Revolut Pay/card/wallet/transfer, card money lands within 24 hours.",
     budget:{q:"\"Our invoicing tool costs almost nothing.\"",say:"\"Then price is not a reason to change. The cost usually hides in the process: reminders, waiting, matching payments to invoices. How much time does that take each month?\"",hint:"If chasing is manual: hours per month + average days late. Both are money."},
@@ -461,8 +462,8 @@ const LANES = {
   bulk: {
     name:"BULK PAYMENTS / PAYOUTS",
     hear:"Many suppliers · contractors · salaries · the same payment run every cycle",
-    ask:"\"How many recipients per run?\" → \"What happens once the file is ready?\"",
-    quant:"recipients · countries · currencies · hours per run · errors · failed payments",
+    ask:"\"How is the payment run prepared today?\" → \"What happens when one payment fails?\"",
+    quant:"\"Roughly how many recipients per run?\" · \"How many hours does each run take?\"",
     line:"\"Turn repeated payment runs into one file or an automatic flow, with approvals built in.\"",
     proof:"Transformify: payouts in 184 countries, same-day payments, volume x3 after connecting the API. Deel uses Revolut to pay international staff and contractors.",
     budget:{q:"\"Why pay to automate transfers?\"",say:"\"At low volume you should not. Where it pays is scale: how many recipients per run, how often, and how much time goes into preparing and fixing it?\"",hint:"If runs are weekly or more: recipients x frequency x prep time. The number sells itself."},
@@ -477,8 +478,8 @@ const LANES = {
   treasury: {
     name:"TREASURY / FX RISK",
     hear:"Cash sitting idle · known future USD/GBP payments · exchange-rate worry",
-    ask:"\"How much cash never leaves the account?\" / \"Do you know your future currency needs?\"",
-    quant:"idle balance · what it earns today · future FX exposure · effect on margin",
+    ask:"\"Where does the spare cash sit today?\" → \"Do you already know next year's USD or GBP needs?\"",
+    quant:"\"Roughly how much never leaves the account?\" · \"What is it earning today?\"",
     line:"\"Let spare cash earn something, and lock exchange rates you already know you will need.\"",
     proof:"Safi: works in 10+ currencies, keeps spare cash in Business Savings, and locks future rates with FX Forwards up to £15m and 2 years ahead.",
     budget:{q:"\"I'm not paying a plan just for savings/FX.\"",say:"\"Agreed, alone it rarely justifies it. It works when the pieces add up. How much cash usually sits idle, and how big is your future currency exposure?\"",hint:"If idle cash is €100k+: 2%+ interest can pay for years of subscription. Do that math out loud."},
