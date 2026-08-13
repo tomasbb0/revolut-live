@@ -84,6 +84,7 @@
   td .say{display:block;margin-top:4px;font-style:italic;color:#575c6f}
   #masterTable td:nth-child(8), #masterTable th:nth-child(8){border-left:3px solid var(--acc)}
   .nxt{display:block;margin-top:5px;color:var(--green);font-size:.75rem;font-weight:600}
+  .recline{display:block;margin-top:6px;margin-bottom:4px;background:#fff;border-radius:10px;padding:9px 13px;font-size:.95rem;color:#25272f}
   .ptag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#ececf1;color:#666a78;font-size:.68rem;font-weight:600}
   details{margin:3px 0}
   details summary{cursor:pointer;font-weight:700;font-size:.74rem;color:var(--acc)}
@@ -393,6 +394,7 @@ const LANES = {
     ],
     noneed:{q:"\"Our bank already works.\"",say:"\"It may work very well. Where, if anywhere, would you improve it: the <b>cost of exchange</b>, the <b>speed of transfers</b>, or the <b>visibility</b>?\"",hint:"If they name one: how often does it happen, and how much does it cost per month?"},
     caps:"Multi-currency accounts + interbank-rate FX (within allowance) + transfers in 35+ currencies to 150+ destinations, SEPA Instant, scheduled payments.",
+    rec:"\"What I\'d suggest: we set you up with a <b>multi-currency account</b>, so you <b>receive and hold money in the currencies you sell in</b>, exchange <b>at the interbank rate</b>, and <b>pay abroad without the bank\'s cut</b>. That alone is usually where the saving shows up.\"",
     recap:"paying/converting abroad through the bank (spread, fees, days of delay)"
   },
   cards: {
@@ -410,6 +412,7 @@ const LANES = {
     ],
     noneed:{q:"\"We already have corporate cards.\"",say:"\"Great, the card may be solved. What about what happens <b>around it</b>: approvals, receipts, <b>matching at month-end</b>?\"",hint:"If manual: how many hours a month, and who does it?"},
     caps:"Physical + virtual cards with limits by category/period/merchant, approval flows, receipt capture & matching, real-time tracking, accounting/HR integrations (€8/user/mo).",
+    rec:"\"What I\'d suggest: <b>cards for the team with the rules built in</b>, so <b>approvals happen before the money is spent</b>, <b>receipts attach themselves</b>, and finance <b>stops chasing people at month-end</b>.\"",
     recap:"team spend across cards/reimbursements (approvals, receipts and matching eating finance time)"
   },
   bills: {
@@ -427,6 +430,7 @@ const LANES = {
     ],
     noneed:{q:"\"Our ERP/accountant already handles this.\"",say:"\"Perfect. If it is truly automatic end to end, there is nothing to fix. What happens <b>from approval in the ERP until the money is matched</b> in the bank?\"",hint:"If a person fills that gap: hours per month and what it delays. That gap is the sale."},
     caps:"BillPay: invoice data extraction, approval routing, scheduled/recurring/bulk payments, accounting sync (Xero, QuickBooks, TOConline, Cegid Primavera, NetSuite, Odoo).",
+    rec:"\"What I\'d suggest: your bills move in <b>one flow: scan, approve, pay, match</b>, synced with <b>your accounting software</b>, so nobody types invoices or chases approvals by email anymore.\"",
     recap:"supplier bills moving by email/PDF with manual entry, approval chasing and slow matching"
   },
   pay: {
@@ -443,6 +447,7 @@ const LANES = {
     ],
     noneed:{q:"\"Stripe already works perfectly.\"",say:"\"Then keep Stripe. My question is only about <b>after the payout</b>: exchange, the bank account, matching. Any work left there?\"",hint:"If yes: quantify that piece alone. Revolut can sit alongside Stripe."},
     caps:"Gateway, plugins (Shopify/WooCommerce), Payment Links, Revolut Pay, Terminal/POS/Tap to Pay. From 0.8% + €0.02, 24-hour settlement, settle in 35+ currencies.",
+    rec:"\"What I\'d suggest: take the payments through Revolut, so the money <b>lands the next day in the same account you run the business from</b>, and your customers can <b>pay in one tap with Revolut Pay</b>.\"",
     recap:"customer payments with fee/approval/settlement friction and disconnected banking afterwards"
   },
   coll: {
@@ -460,6 +465,7 @@ const LANES = {
     ],
     noneed:{q:"\"Customers simply pay late.\"",say:"\"True, no bank fixes a client with no money. My question is only whether anything <b>avoidable adds days</b>: payment options, reminders, matching.\"",hint:"If reminders are manual: automate them; ask what % pays after the first reminder."},
     caps:"Invoices with automatic reminders, payment links, Revolut Pay/cards/wallets/transfers, eligible card money within 24 hours.",
+    rec:"\"What I\'d suggest: <b>invoices with automatic reminders and a payment link</b>, so the client can pay the moment they open it, and the money <b>matches itself to the invoice when it arrives</b>.\"",
     recap:"invoices out but money arriving late (reminders, matching, days adding up)"
   },
   bulk: {
@@ -476,6 +482,7 @@ const LANES = {
     ],
     noneed:{q:"\"Our payroll/AP platform already does it.\"",say:"\"I would not touch the payroll calculation. I mean only the last step: the <b>bank execution</b> after the file is ready. <b>Who runs that</b>, and how long does it take?\"",hint:"If someone uploads files to the bank: ask how often it fails and who fixes it."},
     caps:"Bulk payments (up to 1,000 salaries at once), approval workflows, Business API payouts (payments, counterparties, FX, cards).",
+    rec:"\"What I\'d suggest: the payment run becomes <b>one file or an automatic flow</b>, up to <b>1,000 payments at once with approvals built in</b>, instead of someone preparing transfers by hand.\"",
     recap:"the same payout run every cycle (many recipients, several currencies, manual prep and fixes)"
   },
   treasury: {
@@ -492,6 +499,7 @@ const LANES = {
     ],
     noneed:{q:"\"We need the cash liquid.\" / \"We don't speculate on FX.\"",say:"\"I would not touch working cash, only the part that <b>never leaves the account</b>. Is there an amount that is <b>always there</b>, month after month?\"",hint:"If yes: that amount x 2% = free money per year. Also ask about known future USD/GBP payments."},
     caps:"Business Savings (up to 2.25% TANB paid daily, plan-dependent, 24/7 access) + FX Forwards + Limit/Stop orders.",
+    rec:"\"What I\'d suggest: the cash that never leaves the account goes into <b>savings earning interest daily</b>, and the currency payments you already know are coming get <b>locked at today\'s rate</b>.\"",
     recap:"cash sitting idle and/or known future currency payments left unprotected"
   }
 };
@@ -807,7 +815,7 @@ function renderRecap(){
 function renderValue(){
   const lanes=valueLanes();
   const chips=lanes.map(id=>`<span>${LANES[id].name.split(" ")[0]}</span>`).join("");
-  const capList=lanes.map(id=>`<li><b>${LANES[id].name}:</b> ${LANES[id].caps}</li>`).join("");
+  const capList=lanes.map(id=>`<li><b>${LANES[id].name}:</b> ${LANES[id].caps}<span class="recline">${LANES[id].rec}</span></li>`).join("");
   const proofItems=lanes.map(id=>{
     const c=bestCaseFor(id);
     return c?`<li><b>${c.name}</b>: ${c.ctx}. <span class="kpi">${c.res}</span></li>`:"";
