@@ -84,6 +84,7 @@
   td .say{display:block;margin-top:4px;font-style:italic;color:#575c6f}
   #masterTable td:nth-child(8), #masterTable th:nth-child(8){border-left:3px solid var(--acc)}
   .nxt{display:block;margin-top:5px;color:var(--green);font-size:.75rem;font-weight:600}
+  .whyline{display:block;font-size:.78rem;color:var(--muted);margin-top:2px}
   .recline{display:block;margin-top:6px;margin-bottom:4px;background:#fff;border-radius:10px;padding:9px 13px;font-size:.95rem;color:#25272f}
   .ptag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#ececf1;color:#666a78;font-size:.68rem;font-weight:600}
   details{margin:3px 0}
@@ -380,6 +381,7 @@
 
   <div class="card">
     <div class="step"><span class="n">3</span><span class="t">DISCOVERY TABLE</span><span class="d">click lane names as they come up</span></div>
+    <p class="hint" style="font-size:.82rem"><b>Exit rule:</b> move to recap only when you can clearly name, for the 1-2 lanes you explored: <b>what they're doing today</b>, <b>the main issue</b> (in their words), and <b>roughly what it costs them</b> (€ or hours). Missing one? Keep discovering. Got all three? Stop immediately and recap.</p>
     <div class="legend">
       <span><span class="dot m"></span><b>1 click</b> = mentioned (goes to recap + value)</span>
       <span><span class="dot p"></span><b>2 clicks</b> = ⭐ priority (max 2; a third star bumps the previous one down to mentioned)</span>
@@ -775,15 +777,35 @@ function currentIndustryId(){
   if(sel.type==="company")return COMPANIES[sel.id].industry;
   return null;
 }
-function bestCaseFor(laneId){
+const WHY = {
+  asp_workplace:"Also a wholesaler of industrial products with customers worldwide, paying and receiving across currencies.",
+  asp_karpaten:"Also a business with teams travelling and spending across countries and currencies.",
+  piranha_tropicfeel:"Also a manufacturer selling worldwide through ecommerce, with global suppliers to pay on time.",
+  piranha_paloma:"Also a brand taking online payments from international customers in their own currencies.",
+  empor_workplace:"Also an importer of physical products paying foreign suppliers, with FX eating the margin.",
+  empor_odin:"Also runs supplier bills through capture, approval and payment in one flow.",
+  platforme_pfm:"Also a SaaS with a small finance team and money moving across several countries.",
+  platforme_atelier:"Also a small fashion-sector company with international flows and limited admin capacity.",
+  diroots_power:"Also a software/education company collecting from dozens of markets after outgrowing a fragmented banking setup.",
+  diroots_pfm:"Also a SaaS finance team fighting FX cost and slow reconciliation.",
+  visor_power:"Also a Spanish-market scale-up collecting revenue across borders.",
+  visor_spotahome:"Also a Spanish company whose growing team was drowning finance in account admin.",
+  reflaunt_transformify:"Also a platform paying out to many recipients across many countries.",
+  reflaunt_spotahome:"Also a marketplace with money flowing in and out across dozens of countries.",
+  isto_wild:"Also a DTC brand expanding into new countries with a small finance team making fast decisions.",
+  isto_atelier:"Also a small fashion brand losing margin and hours to FX and admin.",
+  trot_rhodes:"Also a small premium-product company doing overseas transactions with a lean team.",
+  trot_odin:"Also moved supplier bills into one automated flow when processes were reviewed."
+};
+function bestCaseKeyFor(laneId){
   if(sel.type==="company"){
     const cc=COMPANY_CASES[sel.id];
-    if(cc&&cc[laneId])return CASES[cc[laneId]];
+    if(cc&&cc[laneId])return cc[laneId];
   }
   const ind=currentIndustryId();
-  let pool=Object.values(CASES).filter(c=>c.lanes.includes(laneId));
-  if(ind){const t=pool.filter(c=>c.ind.includes(ind));if(t.length)pool=t;}
-  return pool[0]||null;
+  let pool=Object.entries(CASES).filter(([k,c])=>c.lanes.includes(laneId));
+  if(ind){const t=pool.filter(([k,c])=>c.ind.includes(ind));if(t.length)pool=t;}
+  return pool.length?pool[0][0]:null;
 }
 
 /* ================= RENDER ================= */
@@ -860,8 +882,13 @@ function renderValue(){
   const chips=lanes.map(id=>`<span>${LANES[id].name.split(" ")[0]}</span>`).join("");
   const capList=lanes.map(id=>`<li><b>${LANES[id].name}:</b> ${LANES[id].caps}<span class="recline">${LANES[id].rec}</span></li>`).join("");
   const proofItems=lanes.map(id=>{
-    const c=bestCaseFor(id);
-    return c?`<li><b><a href="${c.u}" target="_blank" style="color:inherit;text-decoration:underline dotted">${c.name}</a></b>: ${c.ctx}. <span class="kpi">${c.res}</span></li>`:"";
+    const k=bestCaseKeyFor(id);
+    if(!k)return "";
+    const c=CASES[k];
+    let why="";
+    if(sel.type==="company"&&WHY[sel.id+"_"+k])why=WHY[sel.id+"_"+k];
+    else if(sel.type==="industry")why="Runs the same "+LANES[id].name.toLowerCase()+" workflow in a business adjacent to "+INDUSTRIES[sel.id].name+".";
+    return `<li><b><a href="${c.u}" target="_blank" style="color:inherit;text-decoration:underline dotted">${c.name}</a></b>: ${c.ctx}. <span class="kpi">${c.res}</span>${why?`<span class="whyline">Why similar: ${why}</span>`:""}</li>`;
   }).join("");
   document.getElementById("valueBox").innerHTML=`
     <h3>Ask permission</h3>
