@@ -335,7 +335,7 @@
     <div class="step"><span class="n">3</span><span class="t">DISCOVERY TABLE</span><span class="d">click lane names as they come up</span></div>
     <div class="legend">
       <span><span class="dot m"></span><b>1 click</b> = mentioned (goes to recap + value)</span>
-      <span><span class="dot p"></span><b>2 clicks</b> = ⭐ priority (leads the value pitch)</span>
+      <span><span class="dot p"></span><b>2 clicks</b> = ⭐ priority (max 2; a third star bumps the previous one down to mentioned)</span>
       <span>3rd click clears · selection presets ⭐ on top lanes</span>
     </div>
     <div class="twrap">
@@ -675,7 +675,14 @@ function clearSel(){
 function toggleLane(id){
   laneState[id]=((laneState[id]||0)+1)%3;
   prioSeq=prioSeq.filter(x=>x!==id);
-  if(laneState[id]===2)prioSeq.push(id);
+  if(laneState[id]===2){
+    prioSeq.push(id);
+    if(prioSeq.length>2){
+      const victim=prioSeq[prioSeq.length-2];
+      laneState[victim]=1;
+      prioSeq=prioSeq.filter(x=>x!==victim);
+    }
+  }
   renderTable();renderRecap();renderValue();
 }
 function currentOrder(){
