@@ -82,6 +82,7 @@
   tr.prio td:first-child{background:var(--acc);color:#fff}
   tr.prio td{background:var(--acc-soft)}
   td .say{display:block;margin-top:4px;font-style:italic;color:#575c6f}
+  .nxt{display:block;margin-top:5px;color:var(--green);font-size:.75rem;font-weight:600}
   details{margin:3px 0}
   details summary{cursor:pointer;font-weight:700;font-size:.74rem;color:var(--acc)}
   details p{font-size:.78rem;margin:2px 0}
@@ -375,118 +376,118 @@
 const LANES = {
   fx: {
     name:"FX + INTERNATIONAL PAYMENTS",
-    hear:"Imports/exports · foreign suppliers · USD/GBP · multiple markets/currencies",
-    ask:"\"How are you handling that today?\" → \"Where does conversion happen?\"",
-    quant:"€ FX/month · currencies · effective spread/fees · transfers/month · delays",
-    line:"\"Bring currencies, FX and international payments into one setup, potentially reducing cost and operational friction.\"",
-    proof:"Workplace Depot ~£30k FX saved in 6 months (~£5k/mo). PERGOLUX €25k+ transfer fees saved in 6 months; ~5 days to seconds.",
-    budget:{q:"\"It's expensive.\"",say:"\"Completely fair. I wouldn't compare the subscription in isolation. I'd compare it with what FX, transfers and the surrounding workflow cost you today. Roughly what is that in a normal month?\""},
+    hear:"Imports/exports · foreign suppliers · USD/GBP · many markets/currencies",
+    ask:"\"How are you handling that today?\" → \"Where does the exchange happen?\"",
+    quant:"€ exchanged/month · currencies · what the bank keeps · transfers/month · days of delay",
+    line:"\"Put your currencies, exchange and international payments in one place. Less cost, less work.\"",
+    proof:"Workplace Depot: ~£30k FX saved in 6 months vs their old traditional bank. PERGOLUX: €25k+ saved in transfer fees in 6 months; transfers went from ~5 days to seconds.",
+    budget:{q:"\"It's expensive.\"",say:"\"Completely fair. I would not look at the subscription alone. I would compare it with what exchange and transfers already cost you today. Roughly what is that in a normal month? Plans start at €10 to €35 a month.\"",hint:"If they give a number: volume x 1-2% = what the bank keeps. Say it back: 'so roughly €X a year stays at the bank?'"},
     comp:[
-      {n:"WISE",t:"Genuinely strong on multi-currency accounts, FX, transfers, cards, expenses and batch payments. But Wise Europe explicitly says it is not a bank; Revolut Business is an EEA bank. Revolut also has Revolut Pay, integrated BillPay/purchase orders and a broader merchant-acceptance stack.",s:"\"Wise is very strong for international money. Is Wise solving mainly FX and transfers for you, or are supplier bills, payment acceptance and the rest of your finance workflow also sitting there?\""},
-      {n:"AIRWALLEX",t:"Much closer competitor (accounts, FX, global payments, cards, expenses, Bill Pay, acquiring, APIs). Don't claim feature gaps. Real differences: EEA entity is an EMI, not a bank; Revolut is an EEA bank with Revolut Pay + consumer network. Airwallex Yield (EEA) is a money-market fund, not a savings account.",s:"\"Airwallex is one of the closest alternatives. Rather than pretend there's a huge feature gap, I'd look at whether the Revolut banking ecosystem, Revolut Pay, or the wider workflow creates incremental value. What are you using Airwallex for today?\""}
+      {n:"WISE",t:"Wise is truly strong for international money: accounts, exchange, transfers, cards, batches. But Wise in Europe is not a bank; Revolut Business is an EEA bank. And Revolut also has payment acceptance (Revolut Pay), bill payments and the rest of the stack.",s:"\"Wise is very strong for international money. Is Wise doing only exchange and transfers for you, or also supplier bills, getting paid by customers, and the rest?\"",h:"If Wise only does FX: ask what stays at the old bank (cards? bills? incoming payments?). That split is your opening."},
+      {n:"AIRWALLEX",t:"Very close competitor: accounts, exchange, payments, cards, expenses, acquiring. Do not invent gaps. Real differences: Airwallex in Europe is an e-money firm, not a bank; Revolut is a bank, and has Revolut Pay plus its consumer app users. Their Yield product is a fund, not a savings account.",s:"\"Airwallex is one of the closest options out there. Honestly, the difference is less about features and more about being inside a bank, plus Revolut Pay. What do you use Airwallex for today?\"",h:"If they hesitate on any workflow: dig exactly there. If fully happy: qualify out politely and save your time."}
     ],
-    noneed:{q:"\"Our bank already works.\"",say:"\"It may genuinely work very well. Where, if anywhere, would you improve the current FX or international-payment process?\""},
+    noneed:{q:"\"Our bank already works.\"",say:"\"It may work very well. Where, if anywhere, would you improve it: the cost of exchange, the speed of transfers, or the visibility?\"",hint:"If they name one: how often does it happen, and how much does it cost per month?"},
     caps:"Multi-currency accounts + interbank-rate FX (within allowance) + transfers in 35+ currencies to 150+ destinations, SEPA Instant, scheduled payments.",
     recap:"paying/converting abroad through the bank (spread, fees, days of delay)"
   },
   cards: {
     name:"CARDS + EXPENSES",
-    hear:"Travel · growing teams · subscriptions · shared/personal cards · reimbursements · receipt chasing",
+    hear:"Travel · growing teams · subscriptions · shared cards · reimbursements · receipt chasing",
     ask:"\"How does an employee purchase work today?\" → \"What happens afterwards?\"",
     quant:"users · purchases/month · reimbursement time · receipt chasing · finance hours",
-    line:"\"Give employees controlled spending autonomy while automating approvals, receipts and reconciliation.\"",
-    proof:"Rakuten France: 25%+ less expense-reporting time, payment processing halved. BizAway: thousands of global virtual-card transactions monthly from one central account.",
-    budget:{q:"\"Why pay for expense software?\"",say:"\"Fair. The question is whether the current process costs more than the tool. How much finance time goes into approvals, missing receipts, reimbursements and reconciliation every month?\""},
+    line:"\"Give the team cards with rules. Approvals, receipts and matching then happen mostly by themselves.\"",
+    proof:"Rakuten France: 25%+ less time on expense reports, payment processing halved. BizAway: thousands of global virtual-card payments monthly from one central account.",
+    budget:{q:"\"Why pay for expense software?\"",say:"\"Fair. The tool is €8 per person per month. The question is whether the current process costs more than that. How much time goes into approvals, missing receipts and reimbursements each month?\"",hint:"If they say hours: hours x salary = € per month. Say the number back."},
     comp:[
-      {n:"PLEO",t:"Genuinely strong at company cards, expense management and AP, including direct invoice payments. Revolut additionally offers payment acceptance/Revolut Pay, FX-risk tools (Forwards) and the wider EEA business-bank environment.",s:"\"Pleo is strong at spend management. Is spend actually the whole problem, or are your banking, FX, supplier payments or customer-payment workflows still elsewhere?\""},
-      {n:"SPENDESK",t:"Cards, expenses, AP, procurement; international supplier transfers via a Wise partnership. EEA payment institution, not a bank; no Revolut-Pay-style customer network or merchant-acceptance suite.",s:"\"Spendesk already solves a lot around spend. What happens outside it, particularly the underlying bank account, incoming customer payments and FX?\""},
-      {n:"PAYHAWK",t:"Very strong: global payments via J.P. Morgan, AP, cards, expenses, procurement, ERP sync. Clear adjacent Revolut differentiator: customer payment acceptance + Revolut Pay + two-sided banking environment.",s:"\"Payhawk is extremely strong on outgoing spend. Do you also have friction on the other side, where customers pay you, or where cash and currencies are managed?\""}
+      {n:"PLEO",t:"Pleo is genuinely good at cards, expenses and paying invoices. What Pleo is not: a bank account with exchange, incoming customer payments and rate-locking tools.",s:"\"Pleo is strong at spend. Is spend the whole problem, or do banking, exchange and getting paid still live somewhere else?\"",h:"If spend is covered: move to where the money sits and what the bank charges. Do not fight Pleo on cards."},
+      {n:"SPENDESK",t:"Spendesk covers cards, expenses and invoices, and sends international payments through a Wise partnership. It is a payment firm, not a bank, and it has no way for your customers to pay you.",s:"\"Spendesk solves a lot around spend. What happens outside it: the bank account underneath, incoming payments, exchange?\"",h:"If they pay abroad via Spendesk+Wise: two providers, two costs. Ask what each payment and conversion costs."},
+      {n:"PAYHAWK",t:"Payhawk is very strong: global payments, cards, expenses, procurement, ERP sync. The honest difference is the other side: customers paying you, Revolut Pay, and everything living inside one bank.",s:"\"Payhawk is excellent on money going out. Any friction on money coming in, or where the cash and currencies sit?\"",h:"If money-out is solved: sell the money-in side and the account itself. If both solved: qualify out."}
     ],
-    noneed:{q:"\"We already have corporate cards.\"",say:"\"Great. The card itself may be completely solved. How are approvals, policy controls, receipts and reconciliation handled around those cards?\""},
+    noneed:{q:"\"We already have corporate cards.\"",say:"\"Great, the card may be solved. What about what happens around it: approvals, receipts, matching at month-end?\"",hint:"If manual: how many hours a month, and who does it?"},
     caps:"Physical + virtual cards with limits by category/period/merchant, approval flows, receipt capture & matching, real-time tracking, accounting/HR integrations (€8/user/mo).",
-    recap:"team spend across cards/reimbursements (approvals, receipts and reconciliation eating finance time)"
+    recap:"team spend across cards/reimbursements (approvals, receipts and matching eating finance time)"
   },
   bills: {
     name:"BILLS + AP + RECONCILIATION",
-    hear:"Lots of suppliers · PDF invoices · approval chasing · ERP · CSVs · manual close",
-    ask:"\"Walk me through a bill from receipt to fully reconciled.\" → \"Where is it still manual?\"",
-    quant:"invoices/month · touches · approvers · hours · errors · close time",
-    line:"\"Connect invoice capture, approvals, payment and reconciliation rather than stitching each step together manually.\"",
-    proof:"Join Odin: 3+ hours/week saved on coding bills, approvals, payments. Sunway: 100% of transactions synchronised; countless hours reconciling €10m+ of flight transactions via the API.",
-    budget:{q:"\"We don't want another finance tool.\"",say:"\"Neither would I if it only adds another screen. I'd first quantify whether it actually removes work. How many people and hours currently touch this process?\""},
+    hear:"Many suppliers · PDF invoices · approval chasing · ERP · CSVs · manual month-end",
+    ask:"\"Walk me through a bill from arrival to fully matched.\" → \"Where is it still manual?\"",
+    quant:"invoices/month · people touching each · hours · errors · month-end time",
+    line:"\"One flow: scan the invoice, approve it, pay it, match it. No stitching by hand.\"",
+    proof:"Join Odin: 3+ hours/week saved on coding bills, approvals, payments. Sunway: 100% of transactions matched automatically; €10m+ of flight payments reconciled via the API.",
+    budget:{q:"\"We don't want another finance tool.\"",say:"\"Neither would I if it just adds a screen. This one is inside the plan, from €35 a month, and only makes sense if it removes real work. How many people touch a bill today, and for how long?\"",hint:"If 3+ people or many hours: hours x salary, plus late-payment slip-ups. Quantify out loud."},
     comp:[
-      {n:"PLEO",t:"Does invoice capture, approval, payment and bookkeeping. Don't claim BillPay uniquely does AP. Revolut's layer: the broader banking environment (multi-currency account, international transfers, merchant acceptance, treasury tools) around the bill workflow.",s:"\"If Pleo already automates AP well, I wouldn't duplicate it. What happens outside Pleo once money moves through the bank and needs to be reconciled?\""},
-      {n:"SPENDESK",t:"Strong AP/procurement; international invoice payments delivered through Wise. Revolut is native multi-currency + international payments in one environment, not a two-vendor architecture.",s:"\"Spendesk can solve a lot here. How many systems still touch an approved invoice before it is finally paid and reconciled?\""},
-      {n:"TOCONLINE",t:"Complementary, not replacement. PT accounting/invoicing/bank-reconciliation; doesn't replace the bank providing multi-currency accounts, FX, transfers, cards, acquiring. Revolut integrates with TOConline.",s:"\"I'd actually keep TOConline (Revolut integrates with it). What I'd explore is what still happens between TOConline and the bank: payments, cards, FX and reconciliation exceptions.\""}
+      {n:"PLEO",t:"Pleo also does invoices: capture, approve, pay. Do not pretend it doesn't. Revolut's difference is everything around the bill: the bank account, currencies, transfers, getting paid.",s:"\"If Pleo automates your bills well, I would not duplicate it. What happens after the money leaves: bank matching, foreign invoices, exchange?\"",h:"If foreign invoices exist: ask what the conversion costs on each one."},
+      {n:"SPENDESK",t:"Strong on invoices and procurement, but international payments go out through Wise. With Revolut it is one provider: account, exchange and payment in the same place.",s:"\"How many systems touch an approved invoice before it is paid and matched?\"",h:"If the count is 3+: each system adds cost and errors. Ask where mistakes happened last quarter."},
+      {n:"TOCONLINE",t:"TOConline is Portuguese accounting and invoicing. Keep it: Revolut integrates with it. It just is not the bank underneath: accounts, currencies, transfers, cards.",s:"\"I would keep TOConline, Revolut connects to it. What still hurts between TOConline and the bank: fees, delays, matching?\"",h:"If matching hurts: ask how long month-end takes and what would change if it was automatic."}
     ],
-    noneed:{q:"\"Our ERP/accountant already handles this.\"",say:"\"Perfect. If it's genuinely automated end-to-end, there may be nothing to fix. What happens from ERP approval until the transaction is fully reconciled?\""},
+    noneed:{q:"\"Our ERP/accountant already handles this.\"",say:"\"Perfect. If it is truly automatic end to end, there is nothing to fix. What happens from approval in the ERP until the money is matched in the bank?\"",hint:"If a person fills that gap: hours per month and what it delays. That gap is the sale."},
     caps:"BillPay: invoice data extraction, approval routing, scheduled/recurring/bulk payments, accounting sync (Xero, QuickBooks, TOConline, Cegid Primavera, NetSuite, Odoo).",
-    recap:"supplier bills moving by email/PDF with manual entry, approval chasing and slow reconciliation"
+    recap:"supplier bills moving by email/PDF with manual entry, approval chasing and slow matching"
   },
   pay: {
     name:"PAYMENTS / ECOMMERCE",
     hear:"Shopify · ecommerce · bookings · subscriptions · Stripe · international customers",
-    ask:"\"How do customers pay today?\" → \"What happens after settlement?\"",
-    quant:"revenue · auth rate · blended fee · settlement · currencies · reconciliation",
-    line:"\"Accept payments while connecting sales more directly with the financial account managing the proceeds.\"",
-    proof:"Aer Lingus: 98.5% average authorisation, <10% cart abandonment with Revolut Pay (product proof). 24-hour settlement direct into the Business environment.",
-    budget:{q:"\"Processing is too expensive.\"",say:"\"Potentially. I wouldn't compare headline rates without knowing your card mix. What's your blended processing cost, authorisation rate and settlement time today?\""},
+    ask:"\"How do customers pay today?\" → \"What happens after the money is paid out?\"",
+    quant:"revenue · % approved · blended fee · days to settle · currencies · matching work",
+    line:"\"Take payments and have the money land in the same account you run the business from, next day.\"",
+    proof:"Aer Lingus: 98.5% of Revolut Pay payments approved, under 10% abandoned carts (product proof). Money lands in the business account within 24 hours.",
+    budget:{q:"\"Processing is too expensive.\"",say:"\"Maybe. Rates only mean something next to your card mix. Revolut starts at 0.8% + €0.02. What is your blended rate, how many payments fail, and how long until the money arrives?\"",hint:"If they share the rate: gap x monthly volume = € per year. Say the yearly number."},
     comp:[
-      {n:"STRIPE",t:"World-class payments platform. Never claim Revolut has payments and Stripe doesn't. Revolut's explicit extras: Revolut Pay + the consumer ecosystem, plus a turnkey stack (cards/expenses, BillPay, multi-currency banking, FX-risk tools) alongside acquiring.",s:"\"Stripe is excellent at payments, I wouldn't replace it blindly. What happens after Stripe settles your money? Where do banking, supplier payments, FX, expenses and reconciliation happen?\""},
-      {n:"AIRWALLEX",t:"Also acquiring, multi-currency settlement, broad stack. Clearest Revolut additions: Revolut Pay + consumer network; EEA bank vs EMI.",s:"\"Airwallex already covers a lot. I'd focus the comparison on your actual customer mix and whether Revolut Pay or the broader banking setup gives you anything incremental.\""}
+      {n:"STRIPE",t:"Stripe is world class at payments. Never claim otherwise. Revolut's extras: Revolut Pay (its consumer users pay in one tap), and the whole business stack (account, cards, bills, exchange) in one place.",s:"\"Stripe is excellent, I would not replace it blindly. What happens after Stripe pays out: where does the money go, and what does that bank cost you?\"",h:"If the payout lands in a traditional bank: attack the FX and transfer costs there, not Stripe."},
+      {n:"AIRWALLEX",t:"Airwallex also does acquiring and multi-currency settlement. The honest differences: bank status, and Revolut Pay with Revolut's consumer users.",s:"\"Airwallex covers a lot. With your customer mix, would one-tap payment from Revolut users move your conversion?\"",h:"If they sell to consumers in Europe: push Revolut Pay conversion (Aer Lingus: 98.5% approved). If mostly B2B: focus on the account instead."}
     ],
-    noneed:{q:"\"Stripe already works perfectly.\"",say:"\"Then I'd keep Stripe. I'd only investigate whether anything after settlement (FX, banking or reconciliation) still creates unnecessary work.\""},
+    noneed:{q:"\"Stripe already works perfectly.\"",say:"\"Then keep Stripe. My question is only about after the payout: exchange, the bank account, matching. Any work left there?\"",hint:"If yes: quantify that piece alone. Revolut can sit alongside Stripe."},
     caps:"Gateway, plugins (Shopify/WooCommerce), Payment Links, Revolut Pay, Terminal/POS/Tap to Pay. From 0.8% + €0.02, 24-hour settlement, settle in 35+ currencies.",
-    recap:"customer payments through providers with fee/authorisation/settlement friction and disconnected banking afterwards"
+    recap:"customer payments with fee/approval/settlement friction and disconnected banking afterwards"
   },
   coll: {
     name:"COLLECTIONS / INVOICING",
-    hear:"Late B2B invoices · reminders · manually matching transfers · payment links",
-    ask:"\"How do you collect invoices today?\" → \"Where does delay occur?\"",
-    quant:"DSO · overdue % · reminder hours · reconciliation time",
-    line:"\"Reduce avoidable friction between issuing an invoice, getting paid and reconciling the money.\"",
-    proof:"Product proof: 1m+ invoices created, automatic reminders, Revolut Pay/cards/wallets/transfers, eligible card payments in the account within 24 hours.",
-    budget:{q:"\"Our invoicing tool costs almost nothing.\"",say:"\"Then price probably isn't the reason to change it. I'd look at the full collection process instead. How much work goes into reminders, receiving money and matching payments?\""},
+    hear:"Late B2B invoices · reminders · matching transfers by hand · payment links",
+    ask:"\"How do you collect invoices today?\" → \"Where do the days get lost?\"",
+    quant:"days to get paid · % overdue · hours chasing · hours matching",
+    line:"\"Make getting paid easier: send the invoice, remind automatically, match the money when it lands.\"",
+    proof:"Product proof: 1m+ invoices created on the platform, automatic reminders, pay by Revolut Pay/card/wallet/transfer, card money lands within 24 hours.",
+    budget:{q:"\"Our invoicing tool costs almost nothing.\"",say:"\"Then price is not a reason to change. The cost usually hides in the process: reminders, waiting, matching payments to invoices. How much time does that take each month?\"",hint:"If chasing is manual: hours per month + average days late. Both are money."},
     comp:[
-      {n:"STRIPE INVOICING",t:"Sophisticated invoicing + payments. Revolut's addition: paid invoices connect directly into the broader Business account, FX, supplier payments, spend, Revolut Pay environment.",s:"\"Stripe Invoicing may already solve the invoice itself brilliantly. Once the customer pays, what happens to the money and the reconciliation process?\""},
-      {n:"TOCONLINE",t:"PT accounting/fiscal/invoicing. Don't pretend to replace it. It doesn't provide the underlying multi-currency account, transfers, FX, cards, acquiring. Revolut integrates with it.",s:"\"I'd keep TOConline for accounting and invoicing. I'd only explore whether the actual collection and banking workflow around it could be simplified.\""},
-      {n:"MOLONI",t:"Strong PT invoicing software connecting to Ifthenpay/Eupago/REDUNIQ/Paybyrd, which shows the layer difference: Moloni is the invoicing layer; Revolut is the banking, FX, transfers, cards and direct acceptance underneath.",s:"\"I'd keep Moloni if it's working well. What I'd want to understand is how many other providers you then need for receiving, holding, converting and paying the money.\""}
+      {n:"STRIPE INVOICING",t:"Stripe Invoicing is sophisticated. Revolut's difference: the paid invoice lands straight in your business account, next to exchange, bills and cards.",s:"\"Once the customer pays, what happens to the money and the matching?\"",h:"If matching is manual: quantify hours. If the money sits at another bank: ask what that bank costs."},
+      {n:"TOCONLINE",t:"Keep TOConline for accounting and invoices; Revolut integrates with it. Revolut adds the bank layer: account, payment links, cards, exchange.",s:"\"I would keep TOConline. Could the collecting and banking around it be simpler?\"",h:"If collection is slow: ask days-to-payment; then show payment links + automatic reminders."},
+      {n:"MOLONI",t:"Moloni is good Portuguese invoicing and plugs into several payment providers. That is exactly the point: Moloni is the paperwork layer; Revolut can be the money layer underneath, one provider instead of several.",s:"\"I would keep Moloni if it works. How many different providers touch the money after the invoice goes out?\"",h:"If 2+ providers: add up their fees out loud. One layer = one cost."}
     ],
-    noneed:{q:"\"Customers simply pay late.\"",say:"\"Absolutely, Revolut can't fix customer solvency. I'd only check whether payment options, reminders or reconciliation friction are adding avoidable delay.\""},
-    caps:"Invoices with automatic reminders, payment links, Revolut Pay/cards/wallets/transfers, eligible card proceeds within 24 hours.",
-    recap:"invoices issued but money arriving late (reminders, matching transfers, DSO creep)"
+    noneed:{q:"\"Customers simply pay late.\"",say:"\"True, no bank fixes a client with no money. My question is only whether anything avoidable adds days: payment options, reminders, matching.\"",hint:"If reminders are manual: automate them; ask what % pays after the first reminder."},
+    caps:"Invoices with automatic reminders, payment links, Revolut Pay/cards/wallets/transfers, eligible card money within 24 hours.",
+    recap:"invoices out but money arriving late (reminders, matching, days adding up)"
   },
   bulk: {
     name:"BULK PAYMENTS / PAYOUTS",
-    hear:"Many suppliers · contractors · salaries · repetitive payment runs",
-    ask:"\"How many recipients per cycle?\" → \"What happens once the file is ready?\"",
-    quant:"recipients · countries · currencies · hours/run · errors · failed payments",
-    line:"\"Turn repetitive payout execution into controlled bulk or API-driven workflows.\"",
-    proof:"Transformify: payouts in 184 countries, same-day payments, volume x3 after API implementation. Deel uses Revolut for international employee/contractor payments.",
-    budget:{q:"\"Why pay to automate transfers?\"",say:"\"At low volume, I agree, you probably shouldn't. How many recipients per cycle, and how much finance time goes into preparing, checking and correcting the run?\""},
+    hear:"Many suppliers · contractors · salaries · the same payment run every cycle",
+    ask:"\"How many recipients per run?\" → \"What happens once the file is ready?\"",
+    quant:"recipients · countries · currencies · hours per run · errors · failed payments",
+    line:"\"Turn repeated payment runs into one file or an automatic flow, with approvals built in.\"",
+    proof:"Transformify: payouts in 184 countries, same-day payments, volume x3 after connecting the API. Deel uses Revolut to pay international staff and contractors.",
+    budget:{q:"\"Why pay to automate transfers?\"",say:"\"At low volume you should not. Where it pays is scale: how many recipients per run, how often, and how much time goes into preparing and fixing it?\"",hint:"If runs are weekly or more: recipients x frequency x prep time. The number sells itself."},
     comp:[
-      {n:"WISE",t:"Extremely strong (batch transfers up to 1,000 payments); don't claim exclusivity. Revolut adds Revolut Pay/merchant acceptance, BillPay/purchase orders, EEA bank status, cards/expense/treasury workflows around the payout engine.",s:"\"Wise is very strong at payouts. Is payout execution itself the whole problem, or does finance still move between Wise, your bank, AP, employee spend and accounting around every cycle?\""},
-      {n:"AIRWALLEX",t:"Similarly strong on global payouts and FX. Concrete differentiation: EEA bank status, Revolut Pay/customer ecosystem, surrounding product environment.",s:"\"Airwallex already solves global payouts well. I'd only push further if another part of the workflow is fragmented. What still sits outside it?\""}
+      {n:"WISE",t:"Wise does batches up to 1,000 payments, genuinely strong. Revolut's difference is everything around the payout: where the money is collected, cards, bills, all inside a bank.",s:"\"Wise is very strong at payouts. Is the payout the whole problem, or does money still hop between Wise, the bank and accounting every cycle?\"",h:"If money hops: count the hops out loud. Each hop is time + cost."},
+      {n:"AIRWALLEX",t:"Also strong at global payouts. The differences are bank status and the surrounding stack, not payout coverage.",s:"\"Airwallex solves payouts well. What around it is still fragmented?\"",h:"If nothing: qualify out politely. If something: dig exactly there."}
     ],
-    noneed:{q:"\"Our payroll/AP platform already does it.\"",say:"\"I wouldn't replace payroll or AP calculation. I'm asking specifically about the banking execution after that system has finished its job.\""},
+    noneed:{q:"\"Our payroll/AP platform already does it.\"",say:"\"I would not touch the payroll calculation. I mean only the last step: the bank execution after the file is ready. Who runs that, and how long does it take?\"",hint:"If someone uploads files to the bank: ask how often it fails and who fixes it."},
     caps:"Bulk payments (up to 1,000 salaries at once), approval workflows, Business API payouts (payments, counterparties, FX, cards).",
-    recap:"repetitive payout runs (many recipients, several currencies, manual preparation and corrections)"
+    recap:"the same payout run every cycle (many recipients, several currencies, manual prep and fixes)"
   },
   treasury: {
     name:"TREASURY / FX RISK",
-    hear:"Surplus cash · known future USD/GBP obligations · FX volatility",
-    ask:"\"How much cash consistently sits idle?\" / \"How predictable are future currency needs?\"",
-    quant:"idle balance · current return · future FX exposure · margin impact",
-    line:"\"Put genuinely surplus cash to work and make known currency obligations more predictable.\"",
-    proof:"Safi: 10+ currencies, Business Savings for spare cash, FX Forwards locking rates for future spend up to £15m and 2 years ahead.",
-    budget:{q:"\"I'm not paying for a plan just for savings/FX.\"",say:"\"I agree, it would only make sense if the combined economics justified it. How much cash stays idle, and how material is the FX exposure you're trying to manage?\""},
+    hear:"Cash sitting idle · known future USD/GBP payments · exchange-rate worry",
+    ask:"\"How much cash never leaves the account?\" / \"Do you know your future currency needs?\"",
+    quant:"idle balance · what it earns today · future FX exposure · effect on margin",
+    line:"\"Let spare cash earn something, and lock exchange rates you already know you will need.\"",
+    proof:"Safi: works in 10+ currencies, keeps spare cash in Business Savings, and locks future rates with FX Forwards up to £15m and 2 years ahead.",
+    budget:{q:"\"I'm not paying a plan just for savings/FX.\"",say:"\"Agreed, alone it rarely justifies it. It works when the pieces add up. How much cash usually sits idle, and how big is your future currency exposure?\"",hint:"If idle cash is €100k+: 2%+ interest can pay for years of subscription. Do that math out loud."},
     comp:[
-      {n:"WISE",t:"Wise Interest (Europe) is a money-market fund investment, capital at risk; Wise Europe says it is not a bank. Revolut Business Savings sits inside Revolut's bank environment. Wise's Business menu has no customer FX-forward product; Revolut offers FX Forwards + Limit/Stop orders.",s:"\"Wise has a credible product for earning a return, but it's structurally different. I'd compare the actual product, liquidity and risk rather than the headline rate. And if you have known future FX exposure, that's another area I'd want to understand.\""},
-      {n:"AIRWALLEX",t:"Has FX risk-management and Yield; don't claim exclusivity. EEA Yield is money-market funds, not a savings account; EEA entity is an EMI vs Revolut EEA bank.",s:"\"Airwallex competes very closely here. The comparison is product structure, protection, economics, and whether consolidating the rest of your finance activity into Revolut creates enough value.\""}
+      {n:"WISE",t:"Wise Interest in Europe is a fund: capital at risk, and Wise is not a bank. Revolut savings sit inside a bank. And Wise has no rate-locking product; Revolut has FX Forwards and limit orders.",s:"\"Wise's product earns a return but it is a different animal: a fund, not a savings account in a bank. And for future currency needs, do you lock rates today?\"",h:"If they did not know it is a fund: pause, let it sink in. Then ask how liquid the cash needs to be."},
+      {n:"AIRWALLEX",t:"Airwallex has Yield and FX tools too. Same story: Yield in Europe is a fund, not savings, and the firm is not a bank in the EEA.",s:"\"Airwallex is close here. The real comparison is structure and protection, fund versus savings in a bank. How liquid does your cash need to be?\"",h:"If protection matters to them: bank status is your card. If only yield matters: compare the numbers honestly."}
     ],
-    noneed:{q:"\"We need the cash liquid.\" / \"We don't speculate on FX.\"",say:"\"Absolutely, I wouldn't touch operating cash, only the portion that consistently remains surplus.\" / \"Neither am I suggesting that. I'm talking about currency obligations you already know you'll have.\""},
+    noneed:{q:"\"We need the cash liquid.\" / \"We don't speculate on FX.\"",say:"\"I would not touch working cash, only the part that never leaves the account. Is there an amount that is always there, month after month?\"",hint:"If yes: that amount x 2% = free money per year. Also ask about known future USD/GBP payments."},
     caps:"Business Savings (up to 2.25% TANB paid daily, plan-dependent, 24/7 access) + FX Forwards + Limit/Stop orders.",
-    recap:"surplus cash sitting idle and/or known future currency obligations left unhedged"
+    recap:"cash sitting idle and/or known future currency payments left unprotected"
   }
 };
 const LANE_ORDER_DEFAULT = ["fx","cards","bills","pay","coll","bulk","treasury"];
@@ -747,12 +748,12 @@ function renderTable(){
     const tr=document.createElement("tr");
     if(st===1)tr.classList.add("mention");
     if(st===2)tr.classList.add("prio");
-    const compHtml=L.comp.map(c=>`<details><summary>${c.n}</summary><p>${c.t}<span class="say">SAY: ${c.s}</span></p></details>`).join("");
+    const compHtml=L.comp.map(c=>`<details><summary>${c.n}</summary><p>${c.t}<span class="say">SAY: ${c.s}</span><span class="nxt">↪ ${c.h}</span></p></details>`).join("");
     tr.innerHTML=`<td onclick="toggleLane('${id}')">${st===2?"⭐ ":st===1?"◦ ":""}${L.name}</td>
       <td>${L.hear}</td><td>${L.ask}</td><td>${L.quant}</td><td>${L.line}</td><td>${L.proof}</td>
-      <td><b>${L.budget.q}</b><span class="say">SAY: ${L.budget.say}</span></td>
+      <td><b>${L.budget.q}</b><span class="say">SAY: ${L.budget.say}</span><span class="nxt">↪ ${L.budget.hint}</span></td>
       <td>${compHtml}</td>
-      <td><b>${L.noneed.q}</b><span class="say">SAY: ${L.noneed.say}</span></td>`;
+      <td><b>${L.noneed.q}</b><span class="say">SAY: ${L.noneed.say}</span><span class="nxt">↪ ${L.noneed.hint}</span></td>`;
     tb.appendChild(tr);
   });
 }
