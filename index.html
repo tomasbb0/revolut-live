@@ -340,9 +340,9 @@
     <div class="twrap">
       <table id="masterTable">
         <thead><tr>
-          <th>Lane</th><th>👀 Hear / see</th><th>❓ Ask</th><th>📊 Quantify</th>
-          <th>💡 Revolut line</th><th>🧾 Proof</th><th>💰 Budget</th>
-          <th>⚔️ Competitor</th><th>🚫 No-need</th>
+          <th>Lane</th><th>👀 Hear / see</th><th>❓ Ask</th><th>📊 Quantify (pick 1, say "roughly")</th>
+          <th>💰 Budget</th><th>⚔️ Competitor</th><th>🚫 No-need</th>
+          <th>💡 Revolut line (post-recap only)</th><th>🧾 Proof (in Value only)</th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -751,10 +751,11 @@ function renderTable(){
     if(st===2)tr.classList.add("prio");
     const compHtml=L.comp.map(c=>`<details><summary>${c.n}</summary><p>${c.t}<span class="say">SAY: ${c.s}</span><span class="nxt">↪ ${c.h}</span></p></details>`).join("");
     tr.innerHTML=`<td onclick="toggleLane('${id}')">${st===2?"⭐ ":st===1?"◦ ":""}${L.name}</td>
-      <td>${L.hear}</td><td>${L.ask}</td><td>${L.quant}</td><td>${L.line}</td><td>${L.proof}</td>
+      <td>${L.hear}</td><td>${L.ask}</td><td>${L.quant}</td>
       <td><b>${L.budget.q}</b><span class="say">SAY: ${L.budget.say}</span><span class="nxt">↪ ${L.budget.hint}</span></td>
       <td>${compHtml}</td>
-      <td><b>${L.noneed.q}</b><span class="say">SAY: ${L.noneed.say}</span><span class="nxt">↪ ${L.noneed.hint}</span></td>`;
+      <td><b>${L.noneed.q}</b><span class="say">SAY: ${L.noneed.say}</span><span class="nxt">↪ ${L.noneed.hint}</span></td>
+      <td>${L.line}</td><td>${L.proof}</td>`;
     tb.appendChild(tr);
   });
 }
